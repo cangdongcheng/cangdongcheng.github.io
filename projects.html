@@ -42,38 +42,22 @@
     </div>
   </div>
 
-  <!-- Project Grid -->
+  <!-- Blog Feed -->
   <section>
     <div class="container">
-      <div class="card-grid" id="project-grid"></div>
+      <div id="blog-feed" class="blog-feed"></div>
     </div>
   </section>
 
-  <!-- Detail Modal -->
-  <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true">
-    <div class="modal-box">
-      <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
-      <div id="modal-badge"></div>
-      <h2 id="modal-title" class="modal-title"></h2>
-      <div id="modal-tags" class="card-tags" style="margin-bottom:1.25rem;"></div>
-      <div class="modal-section">
-        <h4>Overview</h4>
-        <p id="modal-overview"></p>
+  <!-- Other Projects -->
+  <section id="other-projects-section" style="display:none;">
+    <div class="container">
+      <div class="section-header">
+        <h2>Other Projects</h2>
       </div>
-      <div id="modal-approach-wrap" class="modal-section">
-        <h4>Approach</h4>
-        <p id="modal-approach"></p>
-      </div>
-      <div id="modal-outcomes-wrap" class="modal-section">
-        <h4>Outcomes</h4>
-        <p id="modal-outcomes"></p>
-      </div>
-      <div id="modal-links-wrap" class="modal-section">
-        <h4>Links</h4>
-        <ul id="modal-links" class="modal-links"></ul>
-      </div>
+      <div class="card-grid" id="other-grid"></div>
     </div>
-  </div>
+  </section>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -84,36 +68,82 @@
 
   <script>
     (function () {
-      var allProjects = [];
       var skill = new URLSearchParams(window.location.search).get('skill');
-      var grid = document.getElementById('project-grid');
 
       fetch('data/projects.json')
         .then(function (r) { return r.json(); })
         .then(function (projects) {
-          allProjects = projects;
+          var featured = projects.filter(function (p) { return p.featured; });
+          var other = projects.filter(function (p) { return !p.featured; });
 
-          grid.innerHTML = projects.map(function (p) {
+          // Render featured as blog posts
+          var feed = document.getElementById('blog-feed');
+          feed.innerHTML = featured.map(function (p) {
             var matches = skill && p.skills.some(function (s) {
               return s.toLowerCase() === skill.toLowerCase();
             });
             var cls = skill ? (matches ? 'highlighted' : 'dimmed') : '';
-            var tagsHTML = p.tags.map(function (t) {
-              return '<span class="tag">' + t + '</span>';
-            }).join('');
+            var d = p.details || {};
+
             var badgeCls = p.status === 'In Progress' ? 'status-inprogress' : p.status === 'Internship' ? 'status-internship' : 'status-class';
             var badgeHTML = p.status ? '<span class="status-badge ' + badgeCls + '">' + p.status + '</span>' : '';
 
-            if (p.featured) {
-              return [
-                '<div class="card ' + cls + '" data-skills="' + p.skills.join(',') + '">',
-                '  ' + badgeHTML,
-                '  <h3>' + p.title + '</h3>',
-                '  <div class="card-tags">' + tagsHTML + '</div>',
-                '  <button class="card-link details-btn" data-id="' + p.id + '">Details &rarr;</button>',
-                '</div>'
-              ].join('\n');
-            } else {
+            var tagsHTML = p.tags.map(function (t) {
+              return '<span class="tag">' + t + '</span>';
+            }).join('');
+
+            // Media section
+            var mediaHTML = '';
+            if (d.media) {
+              if (d.media.type === 'placeholder') {
+                mediaHTML = '<div class="blog-media-placeholder"><p class="muted mono">' + d.media.caption + '</p></div>';
+              } else if (d.media.type === 'video') {
+                mediaHTML = '<div class="blog-media"><video controls><source src="' + d.media.src + '"></video><p class="muted">' + (d.media.caption || '') + '</p></div>';
+              } else if (d.media.type === 'image') {
+                mediaHTML = '<div class="blog-media"><img src="' + d.media.src + '" alt="' + (d.media.caption || '') + '"><p class="muted">' + (d.media.caption || '') + '</p></div>';
+              }
+            }
+
+            // Links section
+            var linksHTML = '';
+            if (d.links && d.links.length > 0) {
+              linksHTML = '<div class="blog-section"><h4>Links</h4><ul class="modal-links">' +
+                d.links.map(function (l) {
+                  return '<li><a href="' + l.url + '" target="_blank" rel="noopener">' + l.label + ' &rarr;</a></li>';
+                }).join('') + '</ul></div>';
+            }
+
+            return [
+              '<article class="blog-post ' + cls + '" data-skills="' + p.skills.join(',') + '">',
+              '  <div class="blog-post-header">',
+              '    ' + badgeHTML,
+              '    <h2>' + p.title + '</h2>',
+              '    <div class="card-tags">' + tagsHTML + '</div>',
+              '  </div>',
+              mediaHTML,
+              '  <div class="blog-section"><h4>Overview</h4><p>' + (d.overview || p.description) + '</p></div>',
+              d.approach ? '  <div class="blog-section"><h4>Approach</h4><p>' + d.approach + '</p></div>' : '',
+              d.outcomes ? '  <div class="blog-section"><h4>Outcomes</h4><p>' + d.outcomes + '</p></div>' : '',
+              linksHTML,
+              '</article>'
+            ].join('\n');
+          }).join('\n');
+
+          // Render other projects as compact cards
+          if (other.length > 0) {
+            document.getElementById('other-projects-section').style.display = '';
+            var otherGrid = document.getElementById('other-grid');
+            otherGrid.innerHTML = other.map(function (p) {
+              var matches = skill && p.skills.some(function (s) {
+                return s.toLowerCase() === skill.toLowerCase();
+              });
+              var cls = skill ? (matches ? 'highlighted' : 'dimmed') : '';
+              var badgeCls = p.status === 'In Progress' ? 'status-inprogress' : p.status === 'Internship' ? 'status-internship' : 'status-class';
+              var badgeHTML = p.status ? '<span class="status-badge ' + badgeCls + '">' + p.status + '</span>' : '';
+              var tagsHTML = p.tags.map(function (t) {
+                return '<span class="tag">' + t + '</span>';
+              }).join('');
+
               return [
                 '<div class="card ' + cls + '" data-skills="' + p.skills.join(',') + '">',
                 '  ' + badgeHTML,
@@ -122,15 +152,8 @@
                 '  <div class="card-tags">' + tagsHTML + '</div>',
                 '</div>'
               ].join('\n');
-            }
-          }).join('\n');
-
-          document.querySelectorAll('.details-btn').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-              var project = allProjects.find(function (p) { return p.id === btn.dataset.id; });
-              if (project) openModal(project);
-            });
-          });
+            }).join('\n');
+          }
 
           if (skill) {
             document.getElementById('filter-banner').style.display = 'block';
@@ -138,62 +161,8 @@
           }
         })
         .catch(function () {
-          grid.innerHTML = '<p class="muted">Could not load projects. Try opening this page via a local server or GitHub Pages.</p>';
+          document.getElementById('blog-feed').innerHTML = '<p class="muted">Could not load projects. Try opening this page via a local server or GitHub Pages.</p>';
         });
-
-      function openModal(p) {
-        var d = p.details || {};
-        var badgeCls = p.status === 'In Progress' ? 'status-inprogress' : p.status === 'Internship' ? 'status-internship' : 'status-class';
-
-        document.getElementById('modal-badge').innerHTML = p.status ? '<span class="status-badge ' + badgeCls + '">' + p.status + '</span>' : '';
-        document.getElementById('modal-title').innerHTML = p.title;
-        document.getElementById('modal-tags').innerHTML = p.tags.map(function (t) {
-          return '<span class="tag">' + t + '</span>';
-        }).join('');
-        document.getElementById('modal-overview').textContent = d.overview || p.description;
-
-        var approachWrap = document.getElementById('modal-approach-wrap');
-        if (d.approach) {
-          document.getElementById('modal-approach').textContent = d.approach;
-          approachWrap.style.display = '';
-        } else {
-          approachWrap.style.display = 'none';
-        }
-
-        var outcomesWrap = document.getElementById('modal-outcomes-wrap');
-        if (d.outcomes) {
-          document.getElementById('modal-outcomes').textContent = d.outcomes;
-          outcomesWrap.style.display = '';
-        } else {
-          outcomesWrap.style.display = 'none';
-        }
-
-        var linksWrap = document.getElementById('modal-links-wrap');
-        if (d.links && d.links.length > 0) {
-          document.getElementById('modal-links').innerHTML = d.links.map(function (l) {
-            return '<li><a href="' + l.url + '" target="_blank" rel="noopener">' + l.label + ' &rarr;</a></li>';
-          }).join('');
-          linksWrap.style.display = '';
-        } else {
-          linksWrap.style.display = 'none';
-        }
-
-        document.getElementById('modal-overlay').classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeModal() {
-        document.getElementById('modal-overlay').classList.remove('open');
-        document.body.style.overflow = '';
-      }
-
-      document.getElementById('modal-close').addEventListener('click', closeModal);
-      document.getElementById('modal-overlay').addEventListener('click', function (e) {
-        if (e.target === this) closeModal();
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeModal();
-      });
     })();
   </script>
 

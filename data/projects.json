@@ -11,7 +11,11 @@
       "overview": "Track 1 of Final Year Project: \"Physics-informed ECG surrogate model for efficient cardiac digital twin.\" Generates high-fidelity ground-truth electrophysiological fields and synthesises 12-lead ECG data using FEM, providing training data for the neural operator surrogate (Track 2).",
       "approach": "Mesh processing pipeline from clinical cardiac imaging: surface truncation at the basal plane, volumetric discretisation via InSilicoHeartGen, surface labelling with the Cobiveco coordinate system, and anisotropic fiber orientation assignment via the LDRB algorithm. Ionic models (ten Tusscher\u2013Panfilov) coupled with monodomain/bidomain PDEs, solved via FEM in the openCARP framework. Parallelised across HPC cluster nodes.",
       "outcomes": "In progress. Mesh processing pipeline operational from raw anatomical meshes to simulation-ready biventricular models.",
-      "links": []
+      "links": [],
+      "media": {
+        "type": "placeholder",
+        "caption": "openCARP simulation animation (coming soon)"
+      }
     }
   },
   {
