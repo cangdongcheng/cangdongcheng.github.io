@@ -49,12 +49,13 @@
     "featured": false
   },
   {
-    "id": "project-2",
-    "title": "EEG Artifact Removal Pipeline",
-    "description": "Automated pipeline for removing ocular and muscular artifacts from EEG recordings using ICA decomposition and wavelet thresholding in MATLAB.",
-    "skills": ["MATLAB", "Signal Processing", "Biomedical Imaging"],
-    "tags": ["MATLAB", "Signal Processing"],
-    "link": "projects/project-2.html",
+    "id": "project-ecg",
+    "title": "ECG Recording and Signal Processing",
+    "description": "Acquired and processed ECG signals using MATLAB. Applied Fourier analysis for frequency-domain characterisation of cardiac waveforms and identification of key signal features.",
+    "skills": ["MATLAB", "Signal Processing", "Differential Equations"],
+    "tags": ["MATLAB", "Signal Processing", "Fourier Analysis"],
+    "link": "projects/project-ecg.html",
+    "status": "Class Project",
     "featured": false
   }
 ]
