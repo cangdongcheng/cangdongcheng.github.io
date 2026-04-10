@@ -523,6 +523,22 @@ section + section {
   filter: grayscale(30%);
 }
 
+/* --- Profile Photo --- */
+.bio-layout {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.profile-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 /* --- Detail Modal --- */
 .modal-overlay {
   display: none;
@@ -616,6 +632,8 @@ section + section {
 @media (max-width: 768px) {
   .hero h1 { font-size: 1.8rem; }
   .hero { padding: 3rem 0 2.5rem; }
+  .bio-layout { flex-direction: column; align-items: center; }
+  .profile-photo { width: 140px; height: 140px; }
   .info-grid { grid-template-columns: 1fr; gap: 0.25rem 0; }
   .info-grid dt { margin-top: 0.75rem; }
   section { padding: 2rem 0; }

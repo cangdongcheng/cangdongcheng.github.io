@@ -1,46 +1,46 @@
 [
   {
     "id": "project-ep-fem",
-    "title": "Electrophysiology FEM Simulation with openCARP",
-    "description": "Finite-element simulation of electrical wave propagation in cardiac tissue and organ-scale geometries using openCARP.",
-    "skills": ["Python", "FEM", "Electrophysiology", "Computational Modeling", "Differential Equations", "High Performance Computing"],
-    "tags": ["Python", "FEM", "Electrophysiology", "openCARP"],
+    "title": "Cardiac EP Simulation with openCARP (FYP Track 1)",
+    "description": "Finite-element simulation of cardiac electrophysiology at tissue and organ scale, generating ground-truth EP fields and synthetic 12-lead ECGs for surrogate model training.",
+    "skills": ["Python", "openCARP", "FEM", "Electrophysiology", "Computational Modeling", "Differential Equations", "High Performance Computing"],
+    "tags": ["openCARP", "FEM", "Electrophysiology", "HPC"],
     "status": "In Progress",
     "featured": true,
     "details": {
-      "overview": "Simulating the electrical activity of cardiac tissue at tissue and organ scale using the Finite Element Method. The model resolves propagation of action potentials across patient-derived geometries, enabling the study of how structural heterogeneities and ion channel mutations contribute to arrhythmia.",
-      "approach": "Built on the openCARP framework. Meshes derived from clinical imaging data. Ionic models (ten Tusscher\u2013Panfilov) coupled with bidomain/monodomain PDEs solved via FEM. Parallelised across HPC cluster nodes.",
-      "outcomes": "In progress \u2014 part of Final Year Project.",
+      "overview": "Track 1 of Final Year Project: \"Physics-informed ECG surrogate model for efficient cardiac digital twin.\" Generates high-fidelity ground-truth electrophysiological fields and synthesises 12-lead ECG data using FEM, providing training data for the neural operator surrogate (Track 2).",
+      "approach": "Mesh processing pipeline from clinical cardiac imaging: surface truncation at the basal plane, volumetric discretisation via InSilicoHeartGen, surface labelling with the Cobiveco coordinate system, and anisotropic fiber orientation assignment via the LDRB algorithm. Ionic models (ten Tusscher\u2013Panfilov) coupled with monodomain/bidomain PDEs, solved via FEM in the openCARP framework. Parallelised across HPC cluster nodes.",
+      "outcomes": "In progress. Mesh processing pipeline operational from raw anatomical meshes to simulation-ready biventricular models.",
       "links": []
     }
   },
   {
     "id": "project-pino",
-    "title": "Physics-Informed Neural Operator for EP Surrogate Modelling",
-    "description": "A physics-informed neural operator as a surrogate model for cardiac electrophysiology simulations, enabling fast inference while respecting PDE constraints.",
-    "skills": ["Python", "Deep Learning", "PINN", "Electrophysiology", "Computational Modeling", "High Performance Computing"],
-    "tags": ["Python", "Deep Learning", "PINN", "Electrophysiology"],
+    "title": "Physics-Informed Neural Surrogate for Cardiac Digital Twin (FYP Track 2)",
+    "description": "A DIMON-based neural surrogate with physics-informed learning for real-time cardiac digital twin deployment, replacing expensive FEM solves.",
+    "skills": ["Python", "Deep Learning", "PINNs", "Electrophysiology", "Computational Modeling", "High Performance Computing"],
+    "tags": ["PINNs", "Deep Learning", "DIMON", "Electrophysiology"],
     "status": "In Progress",
     "featured": true,
     "details": {
-      "overview": "Training a neural operator to serve as a real-time surrogate for the FEM-based EP simulator. The goal is to replace expensive PDE solves with a learned mapping that preserves the underlying physics.",
-      "approach": "Physics-informed loss combining data-driven residual minimisation with PDE residuals. Architecture based on neural operator frameworks. Training data generated from the openCARP simulator.",
-      "outcomes": "In progress \u2014 part of Final Year Project.",
+      "overview": "Track 2 of Final Year Project. Trains a neural operator surrogate to replace expensive PDE solves for real-time cardiac digital twin deployment. Uses the DIMON framework with diffeomorphic mappings to handle geometric variability across patient anatomies.",
+      "approach": "DIMON architecture learns diffeomorphic mappings between patient-specific cardiac geometries and a canonical reference template, enabling generalisation across subjects. Physics-Informed Neural Networks (PINNs) encode the governing electrophysiology PDEs directly in the loss function, allowing learning without full PDE supervision. Training data generated from the openCARP FEM simulator (Track 1). Target: real-time 12-lead ECG prediction from patient-specific parameters.",
+      "outcomes": "In progress. DIMON integration with physics-informed constraints under active development.",
       "links": []
     }
   },
   {
     "id": "project-biomed-imaging",
-    "title": "Biomedical Imaging with AI",
-    "description": "End-to-end pipeline for medical image analysis from raw data preprocessing to deformable image registration using deep learning.",
-    "skills": ["Python", "Deep Learning", "Biomedical Imaging", "Image Registration"],
-    "tags": ["Python", "Deep Learning", "Biomedical Imaging", "Image Registration"],
+    "title": "Biomedical Imaging with AI (BN3406)",
+    "description": "End-to-end medical image analysis pipeline: preprocessing, segmentation, deformable registration (VoxelMorph), and cardiac echo analysis.",
+    "skills": ["Python", "Deep Learning", "Biomedical Imaging", "Image Registration", "Image Segmentation", "VoxelMorph", "ITK-SNAP", "Paraview"],
+    "tags": ["Python", "Deep Learning", "VoxelMorph", "Biomedical Imaging"],
     "status": "Class Project",
     "featured": true,
     "details": {
-      "overview": "End-to-end pipeline for medical image analysis, developed as a course project. Covers the full workflow from raw DICOM data to registered output volumes.",
-      "approach": "Preprocessing: noise reduction, intensity normalisation, bias field correction. Segmentation and feature extraction. Deformable image registration using deep learning.",
-      "outcomes": "Completed as part of coursework. Pipeline tested on publicly available medical imaging datasets.",
+      "overview": "Course project for BN3406 (Biomedical Imaging and AI Applications). Covers the full medical image analysis workflow from raw DICOM data to registered output volumes, with deep learning applied at each stage.",
+      "approach": "Preprocessing: spatial normalisation, noise filtering, bias field correction. Segmentation using both conventional methods and deep learning, with 3D shape reconstruction. Deformable image registration using VoxelMorph. Explored image synthesis, self-supervised learning, and explainable AI for medical imaging. Cardiac echocardiography video segmentation and shape reconstruction. Tools: Python, ITK-SNAP, Paraview.",
+      "outcomes": "Completed. Pipeline developed and tested on publicly available medical imaging datasets. Mini-projects covering preprocessing, segmentation, and registration.",
       "links": []
     }
   },
@@ -61,17 +61,26 @@
   },
   {
     "id": "project-tll",
-    "title": "Protein Characterization &amp; Gene Editing \u2014 Temasek Life Sciences Laboratory",
-    "description": "Summer research internship in plant genetics. Protein characterization and gene editing workflows including plasmid synthesis and transfection.",
-    "skills": ["PCR", "Electron Microscopy", "Plasmid Synthesis", "Transfection", "Protein Characterization"],
-    "tags": ["PCR", "Electron Microscopy", "Plasmid Synthesis", "Transfection"],
+    "title": "RNA-Binding Protein Characterisation in Arabidopsis \u2014 TLL",
+    "description": "Summer research internship investigating the RRM1 RNA-binding protein through molecular cloning, genotyping, and electron microscopy in Arabidopsis thaliana.",
+    "skills": ["PCR", "RT-PCR", "SEM", "Molecular Cloning", "Agrobacterium Transformation", "RNA-seq", "Genotyping", "Plant Genetics"],
+    "tags": ["PCR", "SEM", "Molecular Cloning", "Plant Genetics"],
     "status": "Internship",
     "featured": true,
     "details": {
-      "overview": "Summer research internship in the plant genetics group at Temasek Life Sciences Laboratory (TLL), Singapore. Focused on characterising proteins involved in plant stress response pathways.",
-      "approach": "Protein expression and purification workflows. Characterisation via SDS-PAGE and electron microscopy. Gene editing pipeline: plasmid design, synthesis, and transfection into plant cell lines. PCR-based validation of editing outcomes.",
-      "outcomes": "Completed Summer 2024. Contributed to ongoing research on plant stress-response mechanisms.",
+      "overview": "Summer research internship at Temasek Life Sciences Laboratory (TLL), Singapore. Investigated the role of RRM1, an RNA-binding protein, in Arabidopsis thaliana development. Combined molecular biology techniques with microscopy to characterise gene function and generate transgenic plant lines.",
+      "approach": "Genotyping pipeline: DNA extraction, PCR, gel electrophoresis to screen for homozygous mutants. Plant crossing to generate double mutants. Vector construction using restriction enzymes and ligation, followed by Agrobacterium-mediated transformation. SEM for trichome morphology analysis. RT-PCR and gene cloning for expression validation. RNA-seq for transcriptomic analysis.",
+      "outcomes": "Identified homozygous double mutants and confirmed rrm1 leaf morphology phenotype. Generated transgenic plants carrying FLAG-tagged constructs. Contributed to the discovery of MTB\u2019s role in trichome development.",
       "links": []
     }
+  },
+  {
+    "id": "project-kla",
+    "title": "R&D Engineering Intern \u2014 KLA Singapore",
+    "description": "Engineering internship in semiconductor equipment R&D. Developed modular software tools for hardware test automation and worked in cleanroom environments with advanced microscopy.",
+    "skills": ["Python", "Microscopy", "Cleanroom"],
+    "tags": ["Python", "Microscopy", "Semiconductor"],
+    "status": "Internship",
+    "featured": false
   }
 ]

@@ -16,15 +16,24 @@ This file describes the structure, conventions, and design principles of this si
 ```
 /
 ├── index.html        # Home / hero + featured project cards
-├── about.html        # Bio, education, experience
+├── about.html        # Bio (with photo), education, experience
 ├── projects.html     # Project grid + inline detail modal
 ├── skills.html       # Interactive skills page
 ├── contact.html      # Contact information
 ├── data/
 │   ├── projects.json # ← all project content lives here
 │   └── skills.json   # ← all skill categories live here
+├── content/          # Reference markdowns (sanitised summaries of source docs)
+│   ├── fyp.md
+│   ├── tll-internship.md
+│   ├── kla-internship.md   # ⚠ KLA content is HIGH confidentiality
+│   ├── imaging-course.md
+│   └── bio.md
+├── images/
+│   └── profile.jpg   # Profile photo (circular, 600×600)
 ├── css/
 │   └── style.css     # Single global stylesheet
+├── .gitignore        # Blocks *.pdf, *.doc, *.docx, *.odt
 ├── CLAUDE.md
 └── README.md
 ```

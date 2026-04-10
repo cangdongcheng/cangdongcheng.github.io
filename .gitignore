@@ -1,0 +1,15 @@
+# Document files (source materials — do not commit)
+*.pdf
+*.doc
+*.docx
+*.odt
+*.odp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~

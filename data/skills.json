@@ -5,14 +5,14 @@
   },
   {
     "category": "Tools & Software",
-    "skills": ["SolidWorks", "Linux", "Microsoft Office", "Git", "LaTeX"]
+    "skills": ["openCARP", "ITK-SNAP", "Paraview", "SolidWorks", "Linux", "Microsoft Office", "Git", "LaTeX"]
   },
   {
     "category": "Wet Lab",
-    "skills": ["PCR", "Electron Microscopy", "Protein Characterization", "Plasmid Synthesis", "Transfection"]
+    "skills": ["PCR", "RT-PCR", "SEM", "Molecular Cloning", "Agrobacterium Transformation", "RNA-seq", "Genotyping", "Plant Genetics", "Cleanroom", "Microscopy"]
   },
   {
     "category": "Domain Knowledge",
-    "skills": ["Deep Learning", "Biomedical Imaging", "FEM", "PINN", "Electrophysiology", "Computational Modeling", "High Performance Computing", "Differential Equations", "Signal Processing", "Image Registration", "Digital Logic", "Computer Architecture"]
+    "skills": ["Deep Learning", "Biomedical Imaging", "FEM", "PINNs", "Electrophysiology", "Computational Modeling", "High Performance Computing", "VoxelMorph", "Image Registration", "Image Segmentation", "Signal Processing", "Differential Equations", "Digital Logic", "Computer Architecture"]
   }
 ]
