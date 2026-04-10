@@ -443,6 +443,12 @@ section + section {
   border: 1px solid var(--accent-light);
 }
 
+.status-community {
+  background: #f3eeff;
+  color: #5b3ea8;
+  border: 1px solid #a78bfa;
+}
+
 .status-internship {
   background: #f0faf0;
   color: #2a6b2a;

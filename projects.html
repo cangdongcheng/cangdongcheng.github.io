@@ -85,7 +85,7 @@
             var cls = skill ? (matches ? 'highlighted' : 'dimmed') : '';
             var d = p.details || {};
 
-            var badgeCls = p.status === 'In Progress' ? 'status-inprogress' : p.status === 'Internship' ? 'status-internship' : 'status-class';
+            var badgeCls = p.status === 'In Progress' ? 'status-inprogress' : p.status === 'Internship' ? 'status-internship' : p.status === 'Community' ? 'status-community' : 'status-class';
             var badgeHTML = p.status ? '<span class="status-badge ' + badgeCls + '">' + p.status + '</span>' : '';
 
             var tagsHTML = p.tags.map(function (t) {
@@ -138,7 +138,7 @@
                 return s.toLowerCase() === skill.toLowerCase();
               });
               var cls = skill ? (matches ? 'highlighted' : 'dimmed') : '';
-              var badgeCls = p.status === 'In Progress' ? 'status-inprogress' : p.status === 'Internship' ? 'status-internship' : 'status-class';
+              var badgeCls = p.status === 'In Progress' ? 'status-inprogress' : p.status === 'Internship' ? 'status-internship' : p.status === 'Community' ? 'status-community' : 'status-class';
               var badgeHTML = p.status ? '<span class="status-badge ' + badgeCls + '">' + p.status + '</span>' : '';
               var tagsHTML = p.tags.map(function (t) {
                 return '<span class="tag">' + t + '</span>';
