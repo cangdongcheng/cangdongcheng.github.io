@@ -8,6 +8,10 @@
     "skills": ["SolidWorks", "Linux", "Microsoft Office", "Git", "LaTeX"]
   },
   {
+    "category": "Wet Lab",
+    "skills": ["PCR", "Electron Microscopy"]
+  },
+  {
     "category": "Domain Knowledge",
     "skills": ["Deep Learning", "Biomedical Imaging", "FEM", "PINN", "Electrophysiology", "Computational Modeling", "Differential Equations", "Signal Processing", "Image Registration", "Digital Logic", "Computer Architecture"]
   }
