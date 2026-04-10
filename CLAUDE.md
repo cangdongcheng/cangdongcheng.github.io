@@ -15,29 +15,28 @@ This file describes the structure, conventions, and design principles of this si
 
 ```
 /
-├── index.html                    # Home / hero + featured projects
-├── about.html                    # Bio, education, experience
-├── projects.html                 # Project grid (filterable by skill)
-├── skills.html                   # Interactive skills page
-├── contact.html                  # Contact information
+├── index.html        # Home / hero + featured project cards
+├── about.html        # Bio, education, experience
+├── projects.html     # Project grid + inline detail modal
+├── skills.html       # Interactive skills page
+├── contact.html      # Contact information
 ├── data/
-│   ├── projects.json             # ← add/edit/remove projects here
-│   └── skills.json               # ← add/edit/remove skills here
-├── projects/
-│   ├── project-ep-fem.html       # EP FEM simulation detail
-│   ├── project-pino.html         # Neural operator detail
-│   ├── project-biomed-imaging.html
-│   ├── project-cpu.html
-│   └── project-tll.html
+│   ├── projects.json # ← all project content lives here
+│   └── skills.json   # ← all skill categories live here
 ├── css/
-│   └── style.css                 # Single global stylesheet
-└── CLAUDE.md
+│   └── style.css     # Single global stylesheet
+├── CLAUDE.md
+└── README.md
 ```
+
+### Key architecture decisions
+- **No separate project detail pages.** Featured projects open an inline modal on `projects.html`. This is the "last layer" — no further redirects.
+- **All content is data-driven.** `projects.json` and `skills.json` are the only files to edit when updating content. HTML pages render dynamically via `fetch()`.
+- **Homepage** links featured cards to `projects.html` where the modal provides full detail.
 
 ### Adding a new page
 - Copy the nav block from any existing page.
-- Add the new `<li>` to the nav in **all** existing pages.
-- Link pages relative to root (e.g. `href="skills.html"`), except inside `projects/` where paths go up one level (`href="../skills.html"`).
+- Add the new `<li>` to the nav in **all** existing HTML files.
 
 ---
 
@@ -49,24 +48,33 @@ Edit `data/projects.json`. Each entry:
 {
   "id": "project-foo",
   "title": "Project Title",
-  "description": "One or two sentences: problem, approach, outcome.",
+  "description": "Short card description (1 sentence).",
   "skills": ["Python", "FEM", "Electrophysiology"],
   "tags": ["Python", "FEM"],
-  "link": "projects/project-foo.html",
   "status": "In Progress",
-  "featured": true
+  "featured": true,
+  "details": {
+    "overview": "Extended description for the detail modal.",
+    "approach": "Methodology, tools, frameworks used.",
+    "outcomes": "Results or current status.",
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/..." }
+    ]
+  }
 }
 ```
-- `skills` — full list used for filtering; must match names in `skills.json` exactly (case-insensitive match at runtime)
-- `tags` — display subset shown on the card (keep to 3–4)
-- `status` — optional; `"In Progress"` (amber), `"Class Project"` (blue), `"Internship"` (green), or omit for no badge
-- `featured: true` — project appears on the homepage; all featured projects are shown
 
-Then create the detail page at `projects/project-foo.html` (copy any existing detail page as a template — note the `../` prefix on all asset paths).
+Field reference:
+- `description` — short text shown on the card (non-featured projects only)
+- `skills` — full list for filtering; must match names in `skills.json` exactly
+- `tags` — display subset shown on the card (keep to 3–4)
+- `status` — `"In Progress"` (amber), `"Class Project"` (blue), `"Internship"` (green), or omit for no badge
+- `featured` — appears on homepage + projects page; card shows `Details →` button opening the modal
+- `details` — content for the inline modal: `overview`, `approach`, `outcomes`, `links` (all optional; `overview` falls back to `description`)
 
 ### Adding a new skill
 1. Add the name to the right category in `data/skills.json`.
-2. Make sure at least one project in `projects.json` has that skill in its `skills` array — otherwise the pill links to an empty filter.
+2. Ensure at least one project in `projects.json` has that skill in its `skills` array.
 
 ### Removing a project
 Delete its entry from `projects.json`. No other files need changing.
@@ -76,11 +84,23 @@ Delete its entry from `projects.json`. No other files need changing.
 ## Skills ↔ Projects Cross-Linking
 
 - Each skill pill in `skills.html` links to `projects.html?skill=<name>` (rendered from `skills.json`).
-- On load, `projects.html` fetches `projects.json`, reads `?skill=`, and matches case-insensitively against each project's `skills` array.
-- Matching cards get `.highlighted` (glowing border); non-matching cards get `.dimmed` (faded).
+- `projects.html` fetches `projects.json`, reads `?skill=`, and matches case-insensitively against each project's `skills` array.
+- Matching cards get `.highlighted`; non-matching cards get `.dimmed`.
 - A dismissible filter banner appears at the top.
 
-**Rule:** skill names must be spelled identically in `skills.json` and in project `skills` arrays — the display name always comes from `skills.json`.
+**Rule:** skill names must be spelled identically in `skills.json` and in project `skills` arrays.
+
+---
+
+## Detail Modal (projects.html)
+
+Featured project cards display a `Details →` button instead of a description paragraph. Clicking it opens an inline modal populated from the project's `details` object:
+- **Overview** — extended description
+- **Approach** — methodology and tools
+- **Outcomes** — results or current status
+- **Links** — external resources (shown only if non-empty)
+
+Close via `×` button, clicking the backdrop, or pressing `Escape`.
 
 ---
 
@@ -99,20 +119,19 @@ Then open `http://localhost:8000`.
 ## Design Principles
 
 ### Aesthetic
-- **Terminal / academic monospace** feel — headings and UI elements use `IBM Plex Mono`; body copy uses `Inter`.
-- The `>` logo prefix and `// comment` section labels reinforce this tone. Keep new sections consistent.
-- Restrained color palette: near-white background (`#fafbfc`), dark-navy accent (`#0f4c75`), muted text (`#555e68`). Avoid introducing new brand colors.
+- **Terminal / academic monospace** — headings use `IBM Plex Mono`; body uses `Inter`.
+- `>` logo prefix and `// comment` labels reinforce this tone.
+- Restrained palette: `#fafbfc` background, `#0f4c75` accent, `#555e68` muted. Avoid new brand colors.
 
 ### CSS conventions
-- All styles live in `css/style.css`. Do not add `<style>` blocks to individual pages.
-- Use the custom properties in `:root` (e.g. `var(--accent)`, `var(--border)`) — do not hardcode colors.
-- Inline `style=""` is acceptable only for one-off layout nudges (e.g. `margin-top`), not for anything reusable.
+- All styles in `css/style.css`. No `<style>` blocks in pages.
+- Use `:root` custom properties — do not hardcode colors.
 
 ### HTML / JS conventions
-- No external CSS or JS frameworks — zero dependency footprint.
-- JavaScript is used sparingly, inline at the bottom of the page that needs it.
-- Project cards and skill pills are rendered entirely from JSON — do not hardcode content in HTML.
+- No frameworks — zero dependency footprint.
+- JS is inline at the bottom of each page that needs it.
+- Project cards and skill pills are rendered from JSON — never hardcode content in HTML.
 
 ### Content tone
-- Short, specific. Avoid filler phrases.
-- Project descriptions: *what problem → what approach → what outcome*.
+- Short, specific. No filler.
+- Project descriptions: *what → how → outcome*.

@@ -5,7 +5,6 @@
     "description": "Finite-element simulation of electrical wave propagation in cardiac tissue and organ-scale geometries using openCARP.",
     "skills": ["Python", "FEM", "Electrophysiology", "Computational Modeling", "Differential Equations", "High Performance Computing"],
     "tags": ["Python", "FEM", "Electrophysiology", "openCARP"],
-    "link": "projects/project-ep-fem.html",
     "status": "In Progress",
     "featured": true,
     "details": {
@@ -21,7 +20,6 @@
     "description": "A physics-informed neural operator as a surrogate model for cardiac electrophysiology simulations, enabling fast inference while respecting PDE constraints.",
     "skills": ["Python", "Deep Learning", "PINN", "Electrophysiology", "Computational Modeling", "High Performance Computing"],
     "tags": ["Python", "Deep Learning", "PINN", "Electrophysiology"],
-    "link": "projects/project-pino.html",
     "status": "In Progress",
     "featured": true,
     "details": {
@@ -37,7 +35,6 @@
     "description": "End-to-end pipeline for medical image analysis from raw data preprocessing to deformable image registration using deep learning.",
     "skills": ["Python", "Deep Learning", "Biomedical Imaging", "Image Registration"],
     "tags": ["Python", "Deep Learning", "Biomedical Imaging", "Image Registration"],
-    "link": "projects/project-biomed-imaging.html",
     "status": "Class Project",
     "featured": true,
     "details": {
@@ -53,7 +50,6 @@
     "description": "Full CPU built from first principles: NAND gates to logic gates to ALU to instruction set, implemented in HDL.",
     "skills": ["HDL", "Digital Logic", "Computer Architecture"],
     "tags": ["HDL", "Digital Logic", "Computer Architecture"],
-    "link": "projects/project-cpu.html",
     "status": "Class Project",
     "featured": true,
     "details": {
@@ -69,7 +65,6 @@
     "description": "Summer research internship in plant genetics. Protein characterization and gene editing workflows including plasmid synthesis and transfection.",
     "skills": ["PCR", "Electron Microscopy", "Plasmid Synthesis", "Transfection", "Protein Characterization"],
     "tags": ["PCR", "Electron Microscopy", "Plasmid Synthesis", "Transfection"],
-    "link": "projects/project-tll.html",
     "status": "Internship",
     "featured": true,
     "details": {
