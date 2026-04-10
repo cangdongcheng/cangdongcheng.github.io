@@ -2,51 +2,81 @@
   {
     "id": "project-ep-fem",
     "title": "Electrophysiology FEM Simulation with openCARP",
-    "description": "Finite-element simulation of electrical wave propagation in cardiac tissue and organ-scale geometries using openCARP. Models reentrant arrhythmias in patient-derived meshes.",
-    "skills": ["Python", "FEM", "Electrophysiology", "Computational Modeling", "Differential Equations"],
+    "description": "Finite-element simulation of electrical wave propagation in cardiac tissue and organ-scale geometries using openCARP.",
+    "skills": ["Python", "FEM", "Electrophysiology", "Computational Modeling", "Differential Equations", "High Performance Computing"],
     "tags": ["Python", "FEM", "Electrophysiology", "openCARP"],
     "link": "projects/project-ep-fem.html",
     "status": "In Progress",
-    "featured": true
+    "featured": true,
+    "details": {
+      "overview": "Simulating the electrical activity of cardiac tissue at tissue and organ scale using the Finite Element Method. The model resolves propagation of action potentials across patient-derived geometries, enabling the study of how structural heterogeneities and ion channel mutations contribute to arrhythmia.",
+      "approach": "Built on the openCARP framework. Meshes derived from clinical imaging data. Ionic models (ten Tusscher\u2013Panfilov) coupled with bidomain/monodomain PDEs solved via FEM. Parallelised across HPC cluster nodes.",
+      "outcomes": "In progress \u2014 part of Final Year Project.",
+      "links": []
+    }
   },
   {
     "id": "project-pino",
     "title": "Physics-Informed Neural Operator for EP Surrogate Modelling",
-    "description": "Developing a physics-informed neural operator as a surrogate model for cardiac electrophysiology simulations, enabling fast inference while respecting underlying PDE constraints.",
-    "skills": ["Python", "Deep Learning", "PINN", "Electrophysiology", "Computational Modeling"],
+    "description": "A physics-informed neural operator as a surrogate model for cardiac electrophysiology simulations, enabling fast inference while respecting PDE constraints.",
+    "skills": ["Python", "Deep Learning", "PINN", "Electrophysiology", "Computational Modeling", "High Performance Computing"],
     "tags": ["Python", "Deep Learning", "PINN", "Electrophysiology"],
     "link": "projects/project-pino.html",
     "status": "In Progress",
-    "featured": true
+    "featured": true,
+    "details": {
+      "overview": "Training a neural operator to serve as a real-time surrogate for the FEM-based EP simulator. The goal is to replace expensive PDE solves with a learned mapping that preserves the underlying physics.",
+      "approach": "Physics-informed loss combining data-driven residual minimisation with PDE residuals. Architecture based on neural operator frameworks. Training data generated from the openCARP simulator.",
+      "outcomes": "In progress \u2014 part of Final Year Project.",
+      "links": []
+    }
   },
   {
     "id": "project-biomed-imaging",
     "title": "Biomedical Imaging with AI",
-    "description": "End-to-end pipeline for medical image analysis \u2014 from raw data preprocessing and artifact correction to deformable image registration using deep learning.",
+    "description": "End-to-end pipeline for medical image analysis from raw data preprocessing to deformable image registration using deep learning.",
     "skills": ["Python", "Deep Learning", "Biomedical Imaging", "Image Registration"],
     "tags": ["Python", "Deep Learning", "Biomedical Imaging", "Image Registration"],
     "link": "projects/project-biomed-imaging.html",
     "status": "Class Project",
-    "featured": true
+    "featured": true,
+    "details": {
+      "overview": "End-to-end pipeline for medical image analysis, developed as a course project. Covers the full workflow from raw DICOM data to registered output volumes.",
+      "approach": "Preprocessing: noise reduction, intensity normalisation, bias field correction. Segmentation and feature extraction. Deformable image registration using deep learning.",
+      "outcomes": "Completed as part of coursework. Pipeline tested on publicly available medical imaging datasets.",
+      "links": []
+    }
   },
   {
     "id": "project-cpu",
     "title": "CPU Design from NAND Gates",
-    "description": "Full CPU built from first principles: NAND gates \u2192 logic gates \u2192 ALU \u2192 registers \u2192 control unit \u2192 instruction set. Implemented in HDL as part of a computer organization course.",
+    "description": "Full CPU built from first principles: NAND gates to logic gates to ALU to instruction set, implemented in HDL.",
     "skills": ["HDL", "Digital Logic", "Computer Architecture"],
     "tags": ["HDL", "Digital Logic", "Computer Architecture"],
     "link": "projects/project-cpu.html",
     "status": "Class Project",
-    "featured": true
+    "featured": true,
+    "details": {
+      "overview": "Designed and implemented a functional 16-bit CPU from first principles, starting from a single NAND gate primitive. Completed as part of a computer organisation course.",
+      "approach": "Bottom-up construction: NAND \u2192 basic gates \u2192 multiplexers \u2192 ALU \u2192 registers \u2192 program counter \u2192 CPU. Described entirely in HDL and verified in a hardware simulator.",
+      "outcomes": "Completed. Full instruction set implemented and tested with assembly programs.",
+      "links": []
+    }
   },
   {
     "id": "project-tll",
-    "title": "Protein Characterization &amp; Gene Editing — Temasek Life Sciences Laboratory",
-    "description": "Summer research internship in plant genetics. Characterized target proteins and performed gene editing workflows including plasmid synthesis and transfection. Used PCR and electron microscopy for validation.",
+    "title": "Protein Characterization &amp; Gene Editing \u2014 Temasek Life Sciences Laboratory",
+    "description": "Summer research internship in plant genetics. Protein characterization and gene editing workflows including plasmid synthesis and transfection.",
     "skills": ["PCR", "Electron Microscopy", "Plasmid Synthesis", "Transfection", "Protein Characterization"],
     "tags": ["PCR", "Electron Microscopy", "Plasmid Synthesis", "Transfection"],
     "link": "projects/project-tll.html",
     "status": "Internship",
-    "featured": true
+    "featured": true,
+    "details": {
+      "overview": "Summer research internship in the plant genetics group at Temasek Life Sciences Laboratory (TLL), Singapore. Focused on characterising proteins involved in plant stress response pathways.",
+      "approach": "Protein expression and purification workflows. Characterisation via SDS-PAGE and electron microscopy. Gene editing pipeline: plasmid design, synthesis, and transfection into plant cell lines. PCR-based validation of editing outcomes.",
+      "outcomes": "Completed Summer 2024. Contributed to ongoing research on plant stress-response mechanisms.",
+      "links": []
+    }
   }
 ]

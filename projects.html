@@ -49,6 +49,32 @@
     </div>
   </section>
 
+  <!-- Detail Modal -->
+  <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-badge"></div>
+      <h2 id="modal-title" class="modal-title"></h2>
+      <div id="modal-tags" class="card-tags" style="margin-bottom:1.25rem;"></div>
+      <div class="modal-section">
+        <h4>Overview</h4>
+        <p id="modal-overview"></p>
+      </div>
+      <div id="modal-approach-wrap" class="modal-section">
+        <h4>Approach</h4>
+        <p id="modal-approach"></p>
+      </div>
+      <div id="modal-outcomes-wrap" class="modal-section">
+        <h4>Outcomes</h4>
+        <p id="modal-outcomes"></p>
+      </div>
+      <div id="modal-links-wrap" class="modal-section">
+        <h4>Links</h4>
+        <ul id="modal-links" class="modal-links"></ul>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
@@ -58,32 +84,53 @@
 
   <script>
     (function () {
-      const skill = new URLSearchParams(window.location.search).get('skill');
-      const grid = document.getElementById('project-grid');
+      var allProjects = [];
+      var skill = new URLSearchParams(window.location.search).get('skill');
+      var grid = document.getElementById('project-grid');
 
       fetch('data/projects.json')
         .then(function (r) { return r.json(); })
         .then(function (projects) {
+          allProjects = projects;
+
           grid.innerHTML = projects.map(function (p) {
-            const matches = skill && p.skills.some(function (s) {
+            var matches = skill && p.skills.some(function (s) {
               return s.toLowerCase() === skill.toLowerCase();
             });
-            const cls = skill ? (matches ? 'highlighted' : 'dimmed') : '';
-            const tagsHTML = p.tags.map(function (t) {
+            var cls = skill ? (matches ? 'highlighted' : 'dimmed') : '';
+            var tagsHTML = p.tags.map(function (t) {
               return '<span class="tag">' + t + '</span>';
             }).join('');
-            const badgeCls = p.status === 'In Progress' ? 'status-inprogress' : p.status === 'Internship' ? 'status-internship' : 'status-class';
-            const badgeHTML = p.status ? '<span class="status-badge ' + badgeCls + '">' + p.status + '</span>' : '';
-            return [
-              '<div class="card ' + cls + '" data-skills="' + p.skills.join(',') + '">',
-              '  ' + badgeHTML,
-              '  <h3>' + p.title + '</h3>',
-              '  <p>' + p.description + '</p>',
-              '  <div class="card-tags">' + tagsHTML + '</div>',
-              '  <a href="' + p.link + '" class="card-link">Read more &rarr;</a>',
-              '</div>'
-            ].join('\n');
+            var badgeCls = p.status === 'In Progress' ? 'status-inprogress' : p.status === 'Internship' ? 'status-internship' : 'status-class';
+            var badgeHTML = p.status ? '<span class="status-badge ' + badgeCls + '">' + p.status + '</span>' : '';
+
+            if (p.featured) {
+              return [
+                '<div class="card ' + cls + '" data-skills="' + p.skills.join(',') + '">',
+                '  ' + badgeHTML,
+                '  <h3>' + p.title + '</h3>',
+                '  <div class="card-tags">' + tagsHTML + '</div>',
+                '  <button class="card-link details-btn" data-id="' + p.id + '">Details &rarr;</button>',
+                '</div>'
+              ].join('\n');
+            } else {
+              return [
+                '<div class="card ' + cls + '" data-skills="' + p.skills.join(',') + '">',
+                '  ' + badgeHTML,
+                '  <h3>' + p.title + '</h3>',
+                '  <p>' + p.description + '</p>',
+                '  <div class="card-tags">' + tagsHTML + '</div>',
+                '</div>'
+              ].join('\n');
+            }
           }).join('\n');
+
+          document.querySelectorAll('.details-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              var project = allProjects.find(function (p) { return p.id === btn.dataset.id; });
+              if (project) openModal(project);
+            });
+          });
 
           if (skill) {
             document.getElementById('filter-banner').style.display = 'block';
@@ -93,6 +140,60 @@
         .catch(function () {
           grid.innerHTML = '<p class="muted">Could not load projects. Try opening this page via a local server or GitHub Pages.</p>';
         });
+
+      function openModal(p) {
+        var d = p.details || {};
+        var badgeCls = p.status === 'In Progress' ? 'status-inprogress' : p.status === 'Internship' ? 'status-internship' : 'status-class';
+
+        document.getElementById('modal-badge').innerHTML = p.status ? '<span class="status-badge ' + badgeCls + '">' + p.status + '</span>' : '';
+        document.getElementById('modal-title').innerHTML = p.title;
+        document.getElementById('modal-tags').innerHTML = p.tags.map(function (t) {
+          return '<span class="tag">' + t + '</span>';
+        }).join('');
+        document.getElementById('modal-overview').textContent = d.overview || p.description;
+
+        var approachWrap = document.getElementById('modal-approach-wrap');
+        if (d.approach) {
+          document.getElementById('modal-approach').textContent = d.approach;
+          approachWrap.style.display = '';
+        } else {
+          approachWrap.style.display = 'none';
+        }
+
+        var outcomesWrap = document.getElementById('modal-outcomes-wrap');
+        if (d.outcomes) {
+          document.getElementById('modal-outcomes').textContent = d.outcomes;
+          outcomesWrap.style.display = '';
+        } else {
+          outcomesWrap.style.display = 'none';
+        }
+
+        var linksWrap = document.getElementById('modal-links-wrap');
+        if (d.links && d.links.length > 0) {
+          document.getElementById('modal-links').innerHTML = d.links.map(function (l) {
+            return '<li><a href="' + l.url + '" target="_blank" rel="noopener">' + l.label + ' &rarr;</a></li>';
+          }).join('');
+          linksWrap.style.display = '';
+        } else {
+          linksWrap.style.display = 'none';
+        }
+
+        document.getElementById('modal-overlay').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        document.getElementById('modal-overlay').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      document.getElementById('modal-close').addEventListener('click', closeModal);
+      document.getElementById('modal-overlay').addEventListener('click', function (e) {
+        if (e.target === this) closeModal();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+      });
     })();
   </script>
 
