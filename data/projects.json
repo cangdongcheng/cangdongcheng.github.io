@@ -40,6 +40,16 @@
     "featured": true
   },
   {
+    "id": "project-tll",
+    "title": "Protein Characterization &amp; Gene Editing — Temasek Life Sciences Laboratory",
+    "description": "Summer research internship in plant genetics. Characterized target proteins and performed gene editing workflows including plasmid synthesis and transfection. Used PCR and electron microscopy for validation.",
+    "skills": ["PCR", "Electron Microscopy", "Plasmid Synthesis", "Transfection", "Protein Characterization"],
+    "tags": ["PCR", "Electron Microscopy", "Plasmid Synthesis", "Transfection"],
+    "link": "projects/project-tll.html",
+    "status": "Internship",
+    "featured": true
+  },
+  {
     "id": "project-1",
     "title": "Cardiac Action Potential Simulator",
     "description": "Numerical simulation of ventricular action potentials using the ten Tusscher\u2013Noble\u2013Noble\u2013Panfilov model. Explores how ion channel conductances affect arrhythmia onset.",

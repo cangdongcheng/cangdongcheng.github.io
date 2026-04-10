@@ -443,6 +443,12 @@ section + section {
   border: 1px solid var(--accent-light);
 }
 
+.status-internship {
+  background: #f0faf0;
+  color: #2a6b2a;
+  border: 1px solid #6abf6a;
+}
+
 /* --- Skill Pills (Skills page) --- */
 .skill-pills {
   display: flex;
