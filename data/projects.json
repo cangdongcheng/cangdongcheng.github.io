@@ -86,5 +86,14 @@
     "tags": ["Python", "Microscopy", "Semiconductor"],
     "status": "Internship",
     "featured": false
+  },
+  {
+    "id": "project-ecg",
+    "title": "ECG Acquisition and Biosignal Processing",
+    "description": "Class project covering the full biosignal pipeline: ECG acquisition, signal conditioning, and frequency-domain analysis using Fourier transform for cardiac waveform characterisation.",
+    "skills": ["MATLAB", "Signal Processing", "Data Processing", "Data Analysis"],
+    "tags": ["MATLAB", "Signal Processing", "Fourier Transform"],
+    "status": "Class Project",
+    "featured": false
   }
 ]
