@@ -544,9 +544,11 @@ section + section {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 2px solid var(--border);
   object-fit: cover;
+  object-position: center 35%;
   margin-bottom: 1rem;
+  -webkit-mask-image: radial-gradient(circle, black 45%, transparent 75%);
+  mask-image: radial-gradient(circle, black 45%, transparent 75%);
 }
 
 /* --- Detail Modal --- */
