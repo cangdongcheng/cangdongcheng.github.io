@@ -539,6 +539,16 @@ section + section {
   flex-shrink: 0;
 }
 
+/* --- Hero Avatar --- */
+.hero-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
 /* --- Detail Modal --- */
 .modal-overlay {
   display: none;
