@@ -21,15 +21,15 @@
   {
     "id": "project-pino",
     "title": "Physics-Informed Neural Surrogate for Cardiac Digital Twin (Final Year Project)",
-    "description": "A DIMON-based neural surrogate with physics-informed learning for real-time cardiac digital twin deployment, replacing expensive FEM solves.",
+    "description": "Extending the DIMON framework to biventricular meshes and richer electrophysiology outputs (ECG, reaction dynamics) for real-time cardiac digital twin deployment.",
     "skills": ["Python", "MATLAB", "Git", "Deep Learning", "PINNs", "Electrophysiology", "Computational Modeling", "High Performance Computing"],
     "tags": ["PINNs", "Deep Learning", "DIMON", "Electrophysiology"],
     "status": "In Progress",
     "featured": true,
     "details": {
-      "overview": "Track 2 of Final Year Project. Trains a neural operator surrogate to replace expensive PDE solves for real-time cardiac digital twin deployment. Uses the DIMON framework with diffeomorphic mappings to handle geometric variability across patient anatomies.",
-      "approach": "DIMON architecture learns diffeomorphic mappings between patient-specific cardiac geometries and a canonical reference template, enabling generalisation across subjects. Physics-Informed Neural Networks (PINNs) encode the governing electrophysiology PDEs directly in the loss function, allowing learning without full PDE supervision. Training data generated from the openCARP FEM simulator (Track 1). Target: real-time 12-lead ECG prediction from patient-specific parameters.",
-      "outcomes": "In progress. DIMON integration with physics-informed constraints under active development.",
+      "overview": "Builds on the DIMON framework, which parameterises cardiac geometry and learns a solution operator on a unified domain \u2014 solving the geometry generalisation problem for PINNs. Extending DIMON to biventricular meshes and richer electrophysiology outputs beyond activation time and repolarisation maps.",
+      "approach": "DIMON parameterises patient-specific cardiac geometries into a unified domain, enabling a single neural operator to generalise across anatomies. PINNs encode the governing electrophysiology PDEs directly in the loss function. Current extensions: (1) biventricular mesh support, (2) 12-lead ECG prediction, and (3) reaction dynamics modelling. Training data generated from the openCARP FEM simulator.",
+      "outcomes": "In progress. Extending DIMON to biventricular geometries and broader electrophysiology outputs (ECG, reaction dynamics).",
       "links": []
     }
   },

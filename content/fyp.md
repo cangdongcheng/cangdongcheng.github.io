@@ -23,13 +23,15 @@ Generates high-fidelity ground-truth electrophysiological fields and synthesises
 
 ### Track 2 — Neural Operator Surrogate (DIMON + PINNs)
 
-Replaces expensive PDE solves with a learned mapping that preserves physical constraints.
+Builds on the DIMON framework to create a fast surrogate that preserves physical constraints.
 
-**DIMON framework:** Uses diffeomorphic mappings to translate diverse patient-specific cardiac anatomies into a canonical reference template. Enables the surrogate to generalise across different subjects.
+**DIMON framework:** Parameterises cardiac geometry and learns a solution operator on a unified domain — solving the geometry generalisation problem for PINNs. Does NOT learn diffeomorphic mappings; it parameterises geometry so the operator can generalise across anatomies.
 
 **PINNs:** Physics-Informed Neural Networks encode PDE residuals directly in the loss function, allowing learning without full PDE supervision.
 
-**Target:** Real-time 12-lead ECG prediction from patient-specific parameters.
+**Current extensions (built on top of DIMON):**
+1. Extending to biventricular mesh (original work used simpler geometries)
+2. Extending to 12-lead ECG prediction and reaction dynamics, beyond just activation time maps and repolarisation maps
 
 ## Tools
 
