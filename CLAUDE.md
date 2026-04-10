@@ -15,19 +15,23 @@ This file describes the structure, conventions, and design principles of this si
 
 ```
 /
-├── index.html          # Home / hero page
-├── about.html          # Bio, education, skills summary
-├── projects.html       # Project grid (filterable by skill)
-├── skills.html         # Interactive skills page — links into projects
-├── contact.html        # Contact information
+├── index.html                    # Home / hero + featured projects
+├── about.html                    # Bio, education, experience
+├── projects.html                 # Project grid (filterable by skill)
+├── skills.html                   # Interactive skills page
+├── contact.html                  # Contact information
 ├── data/
-│   ├── projects.json   # ← edit this to add/update projects
-│   └── skills.json     # ← edit this to add/update skills
+│   ├── projects.json             # ← add/edit/remove projects here
+│   └── skills.json               # ← add/edit/remove skills here
 ├── projects/
-│   └── project-1.html  # Individual project detail page (template)
+│   ├── project-ep-fem.html       # EP FEM simulation detail
+│   ├── project-pino.html         # Neural operator detail
+│   ├── project-biomed-imaging.html
+│   ├── project-cpu.html
+│   └── project-tll.html
 ├── css/
-│   └── style.css       # Single global stylesheet — all styles live here
-└── CLAUDE.md           # This file
+│   └── style.css                 # Single global stylesheet
+└── CLAUDE.md
 ```
 
 ### Adding a new page
@@ -40,55 +44,55 @@ This file describes the structure, conventions, and design principles of this si
 ## Updating Content
 
 ### Adding or editing a project
-1. Add an entry to `data/projects.json`:
-   ```json
-   {
-     "id": "project-5",
-     "title": "Your Project Title",
-     "description": "One or two sentences: problem, approach, outcome.",
-     "skills": ["Python", "NumPy", "Computational Modeling"],
-     "tags": ["Python", "NumPy"],
-     "link": "projects/project-5.html",
-     "featured": false
-   }
-   ```
-   - `skills` — full list used for filtering (must match names in `skills.json` exactly)
-   - `tags` — display subset shown on the card (keep to 3–4)
-   - `featured: true` — shows the project in the homepage "Featured Work" section (up to 3 shown)
+Edit `data/projects.json`. Each entry:
+```json
+{
+  "id": "project-foo",
+  "title": "Project Title",
+  "description": "One or two sentences: problem, approach, outcome.",
+  "skills": ["Python", "FEM", "Electrophysiology"],
+  "tags": ["Python", "FEM"],
+  "link": "projects/project-foo.html",
+  "status": "In Progress",
+  "featured": true
+}
+```
+- `skills` — full list used for filtering; must match names in `skills.json` exactly (case-insensitive match at runtime)
+- `tags` — display subset shown on the card (keep to 3–4)
+- `status` — optional; `"In Progress"` (amber), `"Class Project"` (blue), `"Internship"` (green), or omit for no badge
+- `featured: true` — project appears on the homepage; all featured projects are shown
 
-2. Create the detail page at `projects/project-5.html` (copy `project-1.html` as a template).
+Then create the detail page at `projects/project-foo.html` (copy any existing detail page as a template — note the `../` prefix on all asset paths).
 
 ### Adding a new skill
-1. Add the skill name to the relevant category in `data/skills.json`.
-2. Make sure at least one project in `data/projects.json` has that skill in its `skills` array — otherwise the pill links to an empty filter.
+1. Add the name to the right category in `data/skills.json`.
+2. Make sure at least one project in `projects.json` has that skill in its `skills` array — otherwise the pill links to an empty filter.
 
 ### Removing a project
-Delete its entry from `data/projects.json`. The HTML pages update automatically.
+Delete its entry from `projects.json`. No other files need changing.
 
 ---
 
 ## Skills ↔ Projects Cross-Linking
 
-Skills and projects are linked via URL query parameters:
+- Each skill pill in `skills.html` links to `projects.html?skill=<name>` (rendered from `skills.json`).
+- On load, `projects.html` fetches `projects.json`, reads `?skill=`, and matches case-insensitively against each project's `skills` array.
+- Matching cards get `.highlighted` (glowing border); non-matching cards get `.dimmed` (faded).
+- A dismissible filter banner appears at the top.
 
-- Each skill pill in `skills.html` links to `projects.html?skill=<name>` (generated from `skills.json`).
-- On load, `projects.html` fetches `projects.json`, reads `?skill=`, and compares it case-insensitively against each project's `skills` array.
-- Matching cards get `.highlighted` (glowing border), non-matching cards get `.dimmed` (faded).
-- A dismissible filter banner is shown at the top.
-
-**Rule:** skill names must be spelled identically in `skills.json` and in each project's `skills` array in `projects.json` — the match is case-insensitive but the display name comes from `skills.json`.
+**Rule:** skill names must be spelled identically in `skills.json` and in project `skills` arrays — the display name always comes from `skills.json`.
 
 ---
 
 ## Local Development
 
-Because `projects.html` and `skills.html` use `fetch()` to load JSON, opening the files directly via `file://` will not work (browsers block cross-origin fetches on the filesystem).
+`fetch()` calls won't work over `file://`. Run a local server from the repo root:
 
-Run a local server from the repo root:
 ```bash
 python3 -m http.server 8000
 ```
-Then open `http://localhost:8000` in your browser.
+
+Then open `http://localhost:8000`.
 
 ---
 
@@ -96,29 +100,19 @@ Then open `http://localhost:8000` in your browser.
 
 ### Aesthetic
 - **Terminal / academic monospace** feel — headings and UI elements use `IBM Plex Mono`; body copy uses `Inter`.
-- The `>` logo prefix and `// comment` section labels reinforce this tone. Keep new sections consistent with this pattern.
+- The `>` logo prefix and `// comment` section labels reinforce this tone. Keep new sections consistent.
 - Restrained color palette: near-white background (`#fafbfc`), dark-navy accent (`#0f4c75`), muted text (`#555e68`). Avoid introducing new brand colors.
 
 ### CSS conventions
 - All styles live in `css/style.css`. Do not add `<style>` blocks to individual pages.
-- Use the custom properties defined in `:root` (e.g. `var(--accent)`, `var(--border)`) — do not hardcode colors.
-- Inline `style=""` attributes are acceptable only for one-off layout nudges (e.g. `margin-top`), not for anything reusable.
+- Use the custom properties in `:root` (e.g. `var(--accent)`, `var(--border)`) — do not hardcode colors.
+- Inline `style=""` is acceptable only for one-off layout nudges (e.g. `margin-top`), not for anything reusable.
 
-### HTML conventions
-- No external CSS or JS frameworks — keep the dependency footprint at zero.
-- JavaScript is used sparingly and only inline at the bottom of the page that needs it. Keep it small and self-contained.
-- Tag content with `data-skills` on project cards; never encode filtering logic into class names.
+### HTML / JS conventions
+- No external CSS or JS frameworks — zero dependency footprint.
+- JavaScript is used sparingly, inline at the bottom of the page that needs it.
+- Project cards and skill pills are rendered entirely from JSON — do not hardcode content in HTML.
 
 ### Content tone
-- Short, specific, first-person. Avoid filler phrases ("feel free to", "don't hesitate to").
-- Project descriptions follow the pattern: *what problem → what approach → what outcome*.
-
----
-
-## Updating Content (for real projects)
-
-When replacing placeholder content with real projects:
-1. Update the card in `projects.html` (title, description, tags, `data-skills`, link).
-2. Fill in the corresponding `projects/project-N.html` detail page (Overview, Approach, Results, Links).
-3. Check that all skill names in `data-skills` exist in `skills.html` — add new pills there if needed.
-4. Optionally update the "Featured Work" cards on `index.html` to reflect the top 3 projects.
+- Short, specific. Avoid filler phrases.
+- Project descriptions: *what problem → what approach → what outcome*.
