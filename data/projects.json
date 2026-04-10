@@ -48,24 +48,5 @@
     "link": "projects/project-tll.html",
     "status": "Internship",
     "featured": true
-  },
-  {
-    "id": "project-1",
-    "title": "Cardiac Action Potential Simulator",
-    "description": "Numerical simulation of ventricular action potentials using the ten Tusscher\u2013Noble\u2013Noble\u2013Panfilov model. Explores how ion channel conductances affect arrhythmia onset.",
-    "skills": ["Python", "Computational Modeling", "Differential Equations", "Electrophysiology"],
-    "tags": ["Python", "Computational Modeling", "Electrophysiology"],
-    "link": "projects/project-1.html",
-    "featured": false
-  },
-  {
-    "id": "project-ecg",
-    "title": "ECG Recording and Signal Processing",
-    "description": "Acquired and processed ECG signals using MATLAB. Applied Fourier analysis for frequency-domain characterisation of cardiac waveforms and identification of key signal features.",
-    "skills": ["MATLAB", "Signal Processing", "Differential Equations"],
-    "tags": ["MATLAB", "Signal Processing", "Fourier Analysis"],
-    "link": "projects/project-ecg.html",
-    "status": "Class Project",
-    "featured": false
   }
 ]
