@@ -1,0 +1,38 @@
+[
+  {
+    "id": "project-1",
+    "title": "Cardiac Action Potential Simulator",
+    "description": "Numerical simulation of ventricular action potentials using the ten Tusscher\u2013Noble\u2013Noble\u2013Panfilov model. Explores how ion channel conductances affect arrhythmia onset.",
+    "skills": ["Python", "NumPy", "SciPy", "Matplotlib", "Computational Modeling", "Differential Equations"],
+    "tags": ["Python", "SciPy", "Computational Modeling", "Differential Equations"],
+    "link": "projects/project-1.html",
+    "featured": true
+  },
+  {
+    "id": "project-2",
+    "title": "EEG Artifact Removal Pipeline",
+    "description": "Automated pipeline for removing ocular and muscular artifacts from EEG recordings using ICA decomposition and wavelet thresholding in MATLAB/Simulink.",
+    "skills": ["MATLAB", "Simulink", "Signal Processing", "Biomedical Engineering"],
+    "tags": ["MATLAB", "Simulink", "Signal Processing"],
+    "link": "projects/project-2.html",
+    "featured": true
+  },
+  {
+    "id": "project-3",
+    "title": "Glucose\u2013Insulin PK/PD Model",
+    "description": "Pharmacokinetic/pharmacodynamic model of glucose\u2013insulin dynamics under meal perturbations. Fitted to clinical data and used to simulate type-2 diabetes progression.",
+    "skills": ["Python", "MATLAB", "NumPy", "SciPy", "LaTeX", "Computational Modeling", "Differential Equations", "Pharmacokinetics", "Data Analysis"],
+    "tags": ["Python", "MATLAB", "Pharmacokinetics", "Differential Equations"],
+    "link": "projects/project-3.html",
+    "featured": false
+  },
+  {
+    "id": "project-4",
+    "title": "Tumor Growth ML Predictor",
+    "description": "Supervised learning models trained on synthetic tumor growth data to predict patient response to chemotherapy. Compares regression baselines against gradient boosting and neural surrogates.",
+    "skills": ["Python", "Pandas", "scikit-learn", "Matplotlib", "Machine Learning", "Systems Biology", "Data Analysis"],
+    "tags": ["Python", "scikit-learn", "Machine Learning", "Systems Biology"],
+    "link": "projects/project-4.html",
+    "featured": true
+  }
+]

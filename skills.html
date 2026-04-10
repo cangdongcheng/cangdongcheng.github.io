@@ -38,58 +38,31 @@
     </div>
   </div>
 
-  <!-- Programming Languages -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>Programming Languages</h2>
-      </div>
-      <div class="skill-pills">
-        <a href="projects.html?skill=Python" class="skill-pill">Python</a>
-        <a href="projects.html?skill=MATLAB" class="skill-pill">MATLAB</a>
-        <a href="projects.html?skill=R" class="skill-pill">R</a>
-        <a href="projects.html?skill=Julia" class="skill-pill">Julia</a>
-      </div>
-    </div>
-  </section>
+  <div id="skills-container"></div>
 
-  <!-- Libraries & Tools -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>Libraries &amp; Tools</h2>
-      </div>
-      <div class="skill-pills">
-        <a href="projects.html?skill=NumPy" class="skill-pill">NumPy</a>
-        <a href="projects.html?skill=SciPy" class="skill-pill">SciPy</a>
-        <a href="projects.html?skill=Pandas" class="skill-pill">Pandas</a>
-        <a href="projects.html?skill=scikit-learn" class="skill-pill">scikit-learn</a>
-        <a href="projects.html?skill=Matplotlib" class="skill-pill">Matplotlib</a>
-        <a href="projects.html?skill=Simulink" class="skill-pill">Simulink</a>
-        <a href="projects.html?skill=Git" class="skill-pill">Git</a>
-        <a href="projects.html?skill=LaTeX" class="skill-pill">LaTeX</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Domain Knowledge -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>Domain Knowledge</h2>
-      </div>
-      <div class="skill-pills">
-        <a href="projects.html?skill=Computational+Modeling" class="skill-pill">Computational Modeling</a>
-        <a href="projects.html?skill=Differential+Equations" class="skill-pill">Differential Equations</a>
-        <a href="projects.html?skill=Signal+Processing" class="skill-pill">Signal Processing</a>
-        <a href="projects.html?skill=Machine+Learning" class="skill-pill">Machine Learning</a>
-        <a href="projects.html?skill=Systems+Biology" class="skill-pill">Systems Biology</a>
-        <a href="projects.html?skill=Pharmacokinetics" class="skill-pill">Pharmacokinetics</a>
-        <a href="projects.html?skill=Data+Analysis" class="skill-pill">Data Analysis</a>
-        <a href="projects.html?skill=Biomedical+Engineering" class="skill-pill">Biomedical Engineering</a>
-      </div>
-    </div>
-  </section>
+  <script>
+    fetch('data/skills.json')
+      .then(function (r) { return r.json(); })
+      .then(function (categories) {
+        document.getElementById('skills-container').innerHTML = categories.map(function (cat) {
+          const pillsHTML = cat.skills.map(function (s) {
+            return '<a href="projects.html?skill=' + encodeURIComponent(s) + '" class="skill-pill">' + s + '</a>';
+          }).join('');
+          return [
+            '<section>',
+            '  <div class="container">',
+            '    <div class="section-header"><h2>' + cat.category + '</h2></div>',
+            '    <div class="skill-pills">' + pillsHTML + '</div>',
+            '  </div>',
+            '</section>'
+          ].join('\n');
+        }).join('\n');
+      })
+      .catch(function () {
+        document.getElementById('skills-container').innerHTML =
+          '<section><div class="container"><p class="muted">Could not load skills. Try opening via a local server or GitHub Pages.</p></div></section>';
+      });
+  </script>
 
   <!-- Footer -->
   <footer class="site-footer">

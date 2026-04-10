@@ -53,42 +53,30 @@
         <h2>Featured Work</h2>
         <p>Selected projects in computational health and biomedical engineering.</p>
       </div>
-      <div class="card-grid">
-
-        <div class="card">
-          <h3>Project Title 1</h3>
-          <p>Brief description of the project, what problem it addresses, and key outcomes. Replace this with your own content.</p>
-          <div class="card-tags">
-            <span class="tag">Python</span>
-            <span class="tag">MATLAB</span>
-            <span class="tag">Modeling</span>
-          </div>
-          <a href="projects.html" class="card-link">Details &rarr;</a>
-        </div>
-
-        <div class="card">
-          <h3>Project Title 2</h3>
-          <p>Brief description of the project, methodology used, and results. Replace this with your own content.</p>
-          <div class="card-tags">
-            <span class="tag">Simulation</span>
-            <span class="tag">Data Analysis</span>
-          </div>
-          <a href="projects.html" class="card-link">Details &rarr;</a>
-        </div>
-
-        <div class="card">
-          <h3>Project Title 3</h3>
-          <p>Brief description of the project, its significance, and your contribution. Replace this with your own content.</p>
-          <div class="card-tags">
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Health</span>
-          </div>
-          <a href="projects.html" class="card-link">Details &rarr;</a>
-        </div>
-
-      </div>
+      <div class="card-grid" id="featured-grid"></div>
     </div>
   </section>
+
+  <script>
+    fetch('data/projects.json')
+      .then(function (r) { return r.json(); })
+      .then(function (projects) {
+        const featured = projects.filter(function (p) { return p.featured; }).slice(0, 3);
+        document.getElementById('featured-grid').innerHTML = featured.map(function (p) {
+          const tagsHTML = p.tags.map(function (t) {
+            return '<span class="tag">' + t + '</span>';
+          }).join('');
+          return [
+            '<div class="card">',
+            '  <h3>' + p.title + '</h3>',
+            '  <p>' + p.description + '</p>',
+            '  <div class="card-tags">' + tagsHTML + '</div>',
+            '  <a href="' + p.link + '" class="card-link">Details &rarr;</a>',
+            '</div>'
+          ].join('\n');
+        }).join('\n');
+      });
+  </script>
 
   <!-- Footer -->
   <footer class="site-footer">

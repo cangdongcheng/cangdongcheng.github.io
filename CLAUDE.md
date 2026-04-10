@@ -20,6 +20,9 @@ This file describes the structure, conventions, and design principles of this si
 ├── projects.html       # Project grid (filterable by skill)
 ├── skills.html         # Interactive skills page — links into projects
 ├── contact.html        # Contact information
+├── data/
+│   ├── projects.json   # ← edit this to add/update projects
+│   └── skills.json     # ← edit this to add/update skills
 ├── projects/
 │   └── project-1.html  # Individual project detail page (template)
 ├── css/
@@ -32,9 +35,35 @@ This file describes the structure, conventions, and design principles of this si
 - Add the new `<li>` to the nav in **all** existing pages.
 - Link pages relative to root (e.g. `href="skills.html"`), except inside `projects/` where paths go up one level (`href="../skills.html"`).
 
-### Adding a new project
-1. Add a card to `projects.html` with a `data-skills="Skill1,Skill2,..."` attribute. Skill names must exactly match the labels used in `skills.html`.
-2. Create a detail page under `projects/project-N.html` (copy `project-1.html` as a template — note the `../` prefix on all asset paths).
+---
+
+## Updating Content
+
+### Adding or editing a project
+1. Add an entry to `data/projects.json`:
+   ```json
+   {
+     "id": "project-5",
+     "title": "Your Project Title",
+     "description": "One or two sentences: problem, approach, outcome.",
+     "skills": ["Python", "NumPy", "Computational Modeling"],
+     "tags": ["Python", "NumPy"],
+     "link": "projects/project-5.html",
+     "featured": false
+   }
+   ```
+   - `skills` — full list used for filtering (must match names in `skills.json` exactly)
+   - `tags` — display subset shown on the card (keep to 3–4)
+   - `featured: true` — shows the project in the homepage "Featured Work" section (up to 3 shown)
+
+2. Create the detail page at `projects/project-5.html` (copy `project-1.html` as a template).
+
+### Adding a new skill
+1. Add the skill name to the relevant category in `data/skills.json`.
+2. Make sure at least one project in `data/projects.json` has that skill in its `skills` array — otherwise the pill links to an empty filter.
+
+### Removing a project
+Delete its entry from `data/projects.json`. The HTML pages update automatically.
 
 ---
 
@@ -42,12 +71,24 @@ This file describes the structure, conventions, and design principles of this si
 
 Skills and projects are linked via URL query parameters:
 
-- Each skill pill in `skills.html` links to `projects.html?skill=<name>`.
-- On load, `projects.html` reads `?skill=` and compares it (case-insensitive) against each card's `data-skills` comma-separated list.
+- Each skill pill in `skills.html` links to `projects.html?skill=<name>` (generated from `skills.json`).
+- On load, `projects.html` fetches `projects.json`, reads `?skill=`, and compares it case-insensitively against each project's `skills` array.
 - Matching cards get `.highlighted` (glowing border), non-matching cards get `.dimmed` (faded).
 - A dismissible filter banner is shown at the top.
 
-**Rule:** whenever a new skill is added to `skills.html`, ensure at least one project card in `projects.html` carries it in `data-skills`, and vice versa — orphan skills or untagged cards break the cross-link.
+**Rule:** skill names must be spelled identically in `skills.json` and in each project's `skills` array in `projects.json` — the match is case-insensitive but the display name comes from `skills.json`.
+
+---
+
+## Local Development
+
+Because `projects.html` and `skills.html` use `fetch()` to load JSON, opening the files directly via `file://` will not work (browsers block cross-origin fetches on the filesystem).
+
+Run a local server from the repo root:
+```bash
+python3 -m http.server 8000
+```
+Then open `http://localhost:8000` in your browser.
 
 ---
 

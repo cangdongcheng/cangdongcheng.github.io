@@ -1,0 +1,14 @@
+[
+  {
+    "category": "Programming Languages",
+    "skills": ["Python", "MATLAB", "R", "Julia"]
+  },
+  {
+    "category": "Libraries & Tools",
+    "skills": ["NumPy", "SciPy", "Pandas", "scikit-learn", "Matplotlib", "Simulink", "Git", "LaTeX"]
+  },
+  {
+    "category": "Domain Knowledge",
+    "skills": ["Computational Modeling", "Differential Equations", "Signal Processing", "Machine Learning", "Systems Biology", "Pharmacokinetics", "Data Analysis", "Biomedical Engineering"]
+  }
+]

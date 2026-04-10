@@ -45,76 +45,7 @@
   <!-- Project Grid -->
   <section>
     <div class="container">
-      <div class="card-grid" id="project-grid">
-
-        <div class="card"
-             data-skills="Python,NumPy,SciPy,Matplotlib,Computational Modeling,Differential Equations">
-          <h3>Cardiac Action Potential Simulator</h3>
-          <p>
-            Numerical simulation of ventricular action potentials using the
-            ten Tusscher&ndash;Noble&ndash;Noble&ndash;Panfilov model. Explores
-            how ion channel conductances affect arrhythmia onset.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Python</span>
-            <span class="tag">SciPy</span>
-            <span class="tag">Computational Modeling</span>
-            <span class="tag">Differential Equations</span>
-          </div>
-          <a href="projects/project-1.html" class="card-link">Read more &rarr;</a>
-        </div>
-
-        <div class="card"
-             data-skills="MATLAB,Simulink,Signal Processing,Biomedical Engineering">
-          <h3>EEG Artifact Removal Pipeline</h3>
-          <p>
-            Automated pipeline for removing ocular and muscular artifacts from
-            EEG recordings using ICA decomposition and wavelet thresholding
-            in MATLAB/Simulink.
-          </p>
-          <div class="card-tags">
-            <span class="tag">MATLAB</span>
-            <span class="tag">Simulink</span>
-            <span class="tag">Signal Processing</span>
-          </div>
-          <a href="projects/project-2.html" class="card-link">Read more &rarr;</a>
-        </div>
-
-        <div class="card"
-             data-skills="Python,MATLAB,NumPy,SciPy,LaTeX,Computational Modeling,Differential Equations,Pharmacokinetics,Data Analysis">
-          <h3>Glucose&ndash;Insulin PK/PD Model</h3>
-          <p>
-            Pharmacokinetic/pharmacodynamic model of glucose&ndash;insulin
-            dynamics under meal perturbations. Fitted to clinical data and
-            used to simulate type-2 diabetes progression.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Python</span>
-            <span class="tag">MATLAB</span>
-            <span class="tag">Pharmacokinetics</span>
-            <span class="tag">Differential Equations</span>
-          </div>
-          <a href="projects/project-3.html" class="card-link">Read more &rarr;</a>
-        </div>
-
-        <div class="card"
-             data-skills="Python,Pandas,scikit-learn,Matplotlib,Machine Learning,Systems Biology,Data Analysis">
-          <h3>Tumor Growth ML Predictor</h3>
-          <p>
-            Supervised learning models trained on synthetic tumor growth data
-            to predict patient response to chemotherapy. Compares regression
-            baselines against gradient boosting and neural surrogates.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Python</span>
-            <span class="tag">scikit-learn</span>
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Systems Biology</span>
-          </div>
-          <a href="projects/project-4.html" class="card-link">Read more &rarr;</a>
-        </div>
-
-      </div>
+      <div class="card-grid" id="project-grid"></div>
     </div>
   </section>
 
@@ -127,23 +58,38 @@
 
   <script>
     (function () {
-      const params = new URLSearchParams(window.location.search);
-      const skill = params.get('skill');
-      if (!skill) return;
+      const skill = new URLSearchParams(window.location.search).get('skill');
+      const grid = document.getElementById('project-grid');
 
-      // Show filter banner
-      document.getElementById('filter-banner').style.display = 'block';
-      document.getElementById('filter-label').textContent = skill;
+      fetch('data/projects.json')
+        .then(function (r) { return r.json(); })
+        .then(function (projects) {
+          grid.innerHTML = projects.map(function (p) {
+            const matches = skill && p.skills.some(function (s) {
+              return s.toLowerCase() === skill.toLowerCase();
+            });
+            const cls = skill ? (matches ? 'highlighted' : 'dimmed') : '';
+            const tagsHTML = p.tags.map(function (t) {
+              return '<span class="tag">' + t + '</span>';
+            }).join('');
+            return [
+              '<div class="card ' + cls + '" data-skills="' + p.skills.join(',') + '">',
+              '  <h3>' + p.title + '</h3>',
+              '  <p>' + p.description + '</p>',
+              '  <div class="card-tags">' + tagsHTML + '</div>',
+              '  <a href="' + p.link + '" class="card-link">Read more &rarr;</a>',
+              '</div>'
+            ].join('\n');
+          }).join('\n');
 
-      // Highlight / dim cards
-      const cards = document.querySelectorAll('#project-grid .card');
-      cards.forEach(function (card) {
-        const cardSkills = card.dataset.skills.split(',');
-        const matches = cardSkills.some(function (s) {
-          return s.trim().toLowerCase() === skill.toLowerCase();
+          if (skill) {
+            document.getElementById('filter-banner').style.display = 'block';
+            document.getElementById('filter-label').textContent = skill;
+          }
+        })
+        .catch(function () {
+          grid.innerHTML = '<p class="muted">Could not load projects. Try opening this page via a local server or GitHub Pages.</p>';
         });
-        card.classList.add(matches ? 'highlighted' : 'dimmed');
-      });
     })();
   </script>
 
