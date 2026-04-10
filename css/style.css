@@ -539,23 +539,6 @@ section + section {
   flex-shrink: 0;
 }
 
-/* --- Hero Layout & Avatar --- */
-.hero-layout {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-}
-
-.hero-avatar {
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center 35%;
-  flex-shrink: 0;
-  -webkit-mask-image: radial-gradient(circle, black 45%, transparent 75%);
-  mask-image: radial-gradient(circle, black 45%, transparent 75%);
-}
 
 /* --- Detail Modal --- */
 .modal-overlay {
@@ -650,8 +633,6 @@ section + section {
 @media (max-width: 768px) {
   .hero h1 { font-size: 1.8rem; }
   .hero { padding: 3rem 0 2.5rem; }
-  .hero-layout { flex-direction: column-reverse; }
-  .hero-avatar { width: 160px; height: 160px; }
   .bio-layout { flex-direction: column; align-items: center; }
   .profile-photo { width: 140px; height: 140px; }
   .info-grid { grid-template-columns: 1fr; gap: 0.25rem 0; }
