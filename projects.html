@@ -20,6 +20,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="skills.html">Skills</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -33,59 +34,82 @@
     </div>
   </div>
 
+  <!-- Filter Banner (shown when arriving from Skills page) -->
+  <div id="filter-banner" class="filter-banner" style="display:none;">
+    <div class="container">
+      <span>Showing projects for: <strong id="filter-label"></strong></span>
+      <a href="projects.html" class="filter-clear">Clear filter &times;</a>
+    </div>
+  </div>
+
   <!-- Project Grid -->
   <section>
     <div class="container">
-      <div class="card-grid">
+      <div class="card-grid" id="project-grid">
 
-        <div class="card">
-          <h3>Project Title 1</h3>
+        <div class="card"
+             data-skills="Python,NumPy,SciPy,Matplotlib,Computational Modeling,Differential Equations">
+          <h3>Cardiac Action Potential Simulator</h3>
           <p>
-            Describe the problem, your approach, and key results.
-            What tools did you use? What was the outcome?
+            Numerical simulation of ventricular action potentials using the
+            ten Tusscher&ndash;Noble&ndash;Noble&ndash;Panfilov model. Explores
+            how ion channel conductances affect arrhythmia onset.
           </p>
           <div class="card-tags">
             <span class="tag">Python</span>
-            <span class="tag">Modeling</span>
+            <span class="tag">SciPy</span>
+            <span class="tag">Computational Modeling</span>
+            <span class="tag">Differential Equations</span>
           </div>
           <a href="projects/project-1.html" class="card-link">Read more &rarr;</a>
         </div>
 
-        <div class="card">
-          <h3>Project Title 2</h3>
+        <div class="card"
+             data-skills="MATLAB,Simulink,Signal Processing,Biomedical Engineering">
+          <h3>EEG Artifact Removal Pipeline</h3>
           <p>
-            Describe the problem, your approach, and key results.
-            What tools did you use? What was the outcome?
+            Automated pipeline for removing ocular and muscular artifacts from
+            EEG recordings using ICA decomposition and wavelet thresholding
+            in MATLAB/Simulink.
           </p>
           <div class="card-tags">
             <span class="tag">MATLAB</span>
-            <span class="tag">Simulation</span>
+            <span class="tag">Simulink</span>
+            <span class="tag">Signal Processing</span>
           </div>
           <a href="projects/project-2.html" class="card-link">Read more &rarr;</a>
         </div>
 
-        <div class="card">
-          <h3>Project Title 3</h3>
+        <div class="card"
+             data-skills="Python,MATLAB,NumPy,SciPy,LaTeX,Computational Modeling,Differential Equations,Pharmacokinetics,Data Analysis">
+          <h3>Glucose&ndash;Insulin PK/PD Model</h3>
           <p>
-            Describe the problem, your approach, and key results.
-            What tools did you use? What was the outcome?
+            Pharmacokinetic/pharmacodynamic model of glucose&ndash;insulin
+            dynamics under meal perturbations. Fitted to clinical data and
+            used to simulate type-2 diabetes progression.
           </p>
           <div class="card-tags">
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Health Data</span>
+            <span class="tag">Python</span>
+            <span class="tag">MATLAB</span>
+            <span class="tag">Pharmacokinetics</span>
+            <span class="tag">Differential Equations</span>
           </div>
           <a href="projects/project-3.html" class="card-link">Read more &rarr;</a>
         </div>
 
-        <div class="card">
-          <h3>Project Title 4</h3>
+        <div class="card"
+             data-skills="Python,Pandas,scikit-learn,Matplotlib,Machine Learning,Systems Biology,Data Analysis">
+          <h3>Tumor Growth ML Predictor</h3>
           <p>
-            Describe the problem, your approach, and key results.
-            What tools did you use? What was the outcome?
+            Supervised learning models trained on synthetic tumor growth data
+            to predict patient response to chemotherapy. Compares regression
+            baselines against gradient boosting and neural surrogates.
           </p>
           <div class="card-tags">
-            <span class="tag">Signal Processing</span>
-            <span class="tag">Biomedical</span>
+            <span class="tag">Python</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Systems Biology</span>
           </div>
           <a href="projects/project-4.html" class="card-link">Read more &rarr;</a>
         </div>
@@ -100,6 +124,28 @@
       <p>&copy; 2026 Dongcheng Cang &middot; <span class="mono">Built with care</span></p>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const skill = params.get('skill');
+      if (!skill) return;
+
+      // Show filter banner
+      document.getElementById('filter-banner').style.display = 'block';
+      document.getElementById('filter-label').textContent = skill;
+
+      // Highlight / dim cards
+      const cards = document.querySelectorAll('#project-grid .card');
+      cards.forEach(function (card) {
+        const cardSkills = card.dataset.skills.split(',');
+        const matches = cardSkills.some(function (s) {
+          return s.trim().toLowerCase() === skill.toLowerCase();
+        });
+        card.classList.add(matches ? 'highlighted' : 'dimmed');
+      });
+    })();
+  </script>
 
 </body>
 </html>

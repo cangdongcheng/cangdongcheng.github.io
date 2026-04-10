@@ -418,6 +418,80 @@ section + section {
   max-width: 600px;
 }
 
+/* --- Skill Pills (Skills page) --- */
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.skill-pill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+
+.skill-pill:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* --- Filter Banner (Projects page) --- */
+.filter-banner {
+  background: var(--tag-bg);
+  border-bottom: 1px solid var(--border-light);
+  padding: 0.65rem 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.filter-banner .container {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.filter-banner strong {
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+.filter-clear {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.55rem;
+  border-radius: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.filter-clear:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* --- Card highlight / dim states (Projects filtering) --- */
+.card.highlighted {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(15, 76, 117, 0.12), 0 2px 12px rgba(15, 76, 117, 0.1);
+}
+
+.card.dimmed {
+  opacity: 0.35;
+  filter: grayscale(30%);
+}
+
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .hero h1 { font-size: 1.8rem; }
