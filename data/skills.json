@@ -5,7 +5,7 @@
   },
   {
     "category": "Tools & Software",
-    "skills": ["openCARP", "ITK-SNAP", "Paraview", "SolidWorks", "Linux", "Microsoft Office", "Git", "LaTeX"]
+    "skills": ["openCARP", "ITK-SNAP", "Paraview", "SolidWorks", "Linux", "Microsoft Office", "Git"]
   },
   {
     "category": "Wet Lab",
@@ -13,6 +13,6 @@
   },
   {
     "category": "Domain Knowledge",
-    "skills": ["Deep Learning", "Biomedical Imaging", "FEM", "PINNs", "Electrophysiology", "Computational Modeling", "High Performance Computing", "VoxelMorph", "Image Registration", "Image Segmentation", "Signal Processing", "Differential Equations", "Digital Logic", "Computer Architecture"]
+    "skills": ["Deep Learning", "Biomedical Imaging", "FEM", "PINNs", "Electrophysiology", "Computational Modeling", "High Performance Computing", "VoxelMorph", "Image Registration", "Image Segmentation", "Signal Processing", "Differential Equations", "Data Processing", "Data Analysis", "Digital Logic", "Computer Architecture"]
   }
 ]
