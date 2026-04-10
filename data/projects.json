@@ -3,8 +3,8 @@
     "id": "project-ep-fem",
     "title": "Electrophysiology FEM Simulation with openCARP",
     "description": "Finite-element simulation of electrical wave propagation in cardiac tissue and organ-scale geometries using openCARP. Models reentrant arrhythmias in patient-derived meshes.",
-    "skills": ["Python", "openCARP", "FEM", "Computational Modeling", "Differential Equations", "Electrophysiology"],
-    "tags": ["openCARP", "Python", "FEM", "Electrophysiology"],
+    "skills": ["Python", "FEM", "Electrophysiology", "Computational Modeling", "Differential Equations"],
+    "tags": ["Python", "FEM", "Electrophysiology", "openCARP"],
     "link": "projects/project-ep-fem.html",
     "status": "In Progress",
     "featured": true
@@ -13,8 +13,8 @@
     "id": "project-pino",
     "title": "Physics-Informed Neural Operator for EP Surrogate Modelling",
     "description": "Developing a physics-informed neural operator as a surrogate model for cardiac electrophysiology simulations, enabling fast inference while respecting underlying PDE constraints.",
-    "skills": ["Python", "PyTorch", "Neural Operators", "Machine Learning", "Computational Modeling", "Electrophysiology"],
-    "tags": ["PyTorch", "Neural Operators", "Machine Learning", "Electrophysiology"],
+    "skills": ["Python", "Deep Learning", "PINN", "Electrophysiology", "Computational Modeling"],
+    "tags": ["Python", "Deep Learning", "PINN", "Electrophysiology"],
     "link": "projects/project-pino.html",
     "status": "In Progress",
     "featured": true
@@ -23,8 +23,8 @@
     "id": "project-biomed-imaging",
     "title": "Biomedical Imaging with AI",
     "description": "End-to-end pipeline for medical image analysis \u2014 from raw data preprocessing and artifact correction to deformable image registration using deep learning.",
-    "skills": ["Python", "PyTorch", "Machine Learning", "Medical Imaging", "Image Registration", "Biomedical Engineering"],
-    "tags": ["Python", "PyTorch", "Medical Imaging", "Image Registration"],
+    "skills": ["Python", "Deep Learning", "Biomedical Imaging", "Image Registration"],
+    "tags": ["Python", "Deep Learning", "Biomedical Imaging", "Image Registration"],
     "link": "projects/project-biomed-imaging.html",
     "status": "Class Project",
     "featured": true
@@ -43,17 +43,17 @@
     "id": "project-1",
     "title": "Cardiac Action Potential Simulator",
     "description": "Numerical simulation of ventricular action potentials using the ten Tusscher\u2013Noble\u2013Noble\u2013Panfilov model. Explores how ion channel conductances affect arrhythmia onset.",
-    "skills": ["Python", "NumPy", "SciPy", "Matplotlib", "Computational Modeling", "Differential Equations", "Electrophysiology"],
-    "tags": ["Python", "SciPy", "Computational Modeling", "Electrophysiology"],
+    "skills": ["Python", "Computational Modeling", "Differential Equations", "Electrophysiology"],
+    "tags": ["Python", "Computational Modeling", "Electrophysiology"],
     "link": "projects/project-1.html",
     "featured": false
   },
   {
     "id": "project-2",
     "title": "EEG Artifact Removal Pipeline",
-    "description": "Automated pipeline for removing ocular and muscular artifacts from EEG recordings using ICA decomposition and wavelet thresholding in MATLAB/Simulink.",
-    "skills": ["MATLAB", "Simulink", "Signal Processing", "Biomedical Engineering"],
-    "tags": ["MATLAB", "Simulink", "Signal Processing"],
+    "description": "Automated pipeline for removing ocular and muscular artifacts from EEG recordings using ICA decomposition and wavelet thresholding in MATLAB.",
+    "skills": ["MATLAB", "Signal Processing", "Biomedical Imaging"],
+    "tags": ["MATLAB", "Signal Processing"],
     "link": "projects/project-2.html",
     "featured": false
   }

@@ -1,14 +1,14 @@
 [
   {
-    "category": "Programming Languages",
-    "skills": ["Python", "MATLAB", "R", "Julia"]
+    "category": "Programming & Languages",
+    "skills": ["Python", "MATLAB", "HDL"]
   },
   {
-    "category": "Libraries & Tools",
-    "skills": ["PyTorch", "NumPy", "SciPy", "Matplotlib", "openCARP", "Simulink", "Git", "LaTeX", "HDL"]
+    "category": "Tools & Software",
+    "skills": ["SolidWorks", "Linux", "Microsoft Office", "Git", "LaTeX"]
   },
   {
     "category": "Domain Knowledge",
-    "skills": ["Electrophysiology", "Computational Modeling", "FEM", "Neural Operators", "Machine Learning", "Medical Imaging", "Image Registration", "Differential Equations", "Signal Processing", "Digital Logic", "Computer Architecture", "Biomedical Engineering"]
+    "skills": ["Deep Learning", "Biomedical Imaging", "FEM", "PINN", "Electrophysiology", "Computational Modeling", "Differential Equations", "Signal Processing", "Image Registration", "Digital Logic", "Computer Architecture"]
   }
 ]
