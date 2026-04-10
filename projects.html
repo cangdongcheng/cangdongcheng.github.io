@@ -72,8 +72,11 @@
             const tagsHTML = p.tags.map(function (t) {
               return '<span class="tag">' + t + '</span>';
             }).join('');
+            const badgeCls = p.status === 'In Progress' ? 'status-inprogress' : 'status-class';
+            const badgeHTML = p.status ? '<span class="status-badge ' + badgeCls + '">' + p.status + '</span>' : '';
             return [
               '<div class="card ' + cls + '" data-skills="' + p.skills.join(',') + '">',
+              '  ' + badgeHTML,
               '  <h3>' + p.title + '</h3>',
               '  <p>' + p.description + '</p>',
               '  <div class="card-tags">' + tagsHTML + '</div>',

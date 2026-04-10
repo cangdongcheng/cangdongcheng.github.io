@@ -1,12 +1,52 @@
 [
   {
+    "id": "project-ep-fem",
+    "title": "Electrophysiology FEM Simulation with openCARP",
+    "description": "Finite-element simulation of electrical wave propagation in cardiac tissue and organ-scale geometries using openCARP. Models reentrant arrhythmias in patient-derived meshes.",
+    "skills": ["Python", "openCARP", "FEM", "Computational Modeling", "Differential Equations", "Electrophysiology"],
+    "tags": ["openCARP", "Python", "FEM", "Electrophysiology"],
+    "link": "projects/project-ep-fem.html",
+    "status": "In Progress",
+    "featured": true
+  },
+  {
+    "id": "project-pino",
+    "title": "Physics-Informed Neural Operator for EP Surrogate Modelling",
+    "description": "Developing a physics-informed neural operator as a surrogate model for cardiac electrophysiology simulations, enabling fast inference while respecting underlying PDE constraints.",
+    "skills": ["Python", "PyTorch", "Neural Operators", "Machine Learning", "Computational Modeling", "Electrophysiology"],
+    "tags": ["PyTorch", "Neural Operators", "Machine Learning", "Electrophysiology"],
+    "link": "projects/project-pino.html",
+    "status": "In Progress",
+    "featured": true
+  },
+  {
+    "id": "project-biomed-imaging",
+    "title": "Biomedical Imaging with AI",
+    "description": "End-to-end pipeline for medical image analysis \u2014 from raw data preprocessing and artifact correction to deformable image registration using deep learning.",
+    "skills": ["Python", "PyTorch", "Machine Learning", "Medical Imaging", "Image Registration", "Biomedical Engineering"],
+    "tags": ["Python", "PyTorch", "Medical Imaging", "Image Registration"],
+    "link": "projects/project-biomed-imaging.html",
+    "status": "Class Project",
+    "featured": true
+  },
+  {
+    "id": "project-cpu",
+    "title": "CPU Design from NAND Gates",
+    "description": "Full CPU built from first principles: NAND gates \u2192 logic gates \u2192 ALU \u2192 registers \u2192 control unit \u2192 instruction set. Implemented in HDL as part of a computer organization course.",
+    "skills": ["HDL", "Digital Logic", "Computer Architecture"],
+    "tags": ["HDL", "Digital Logic", "Computer Architecture"],
+    "link": "projects/project-cpu.html",
+    "status": "Class Project",
+    "featured": true
+  },
+  {
     "id": "project-1",
     "title": "Cardiac Action Potential Simulator",
     "description": "Numerical simulation of ventricular action potentials using the ten Tusscher\u2013Noble\u2013Noble\u2013Panfilov model. Explores how ion channel conductances affect arrhythmia onset.",
-    "skills": ["Python", "NumPy", "SciPy", "Matplotlib", "Computational Modeling", "Differential Equations"],
-    "tags": ["Python", "SciPy", "Computational Modeling", "Differential Equations"],
+    "skills": ["Python", "NumPy", "SciPy", "Matplotlib", "Computational Modeling", "Differential Equations", "Electrophysiology"],
+    "tags": ["Python", "SciPy", "Computational Modeling", "Electrophysiology"],
     "link": "projects/project-1.html",
-    "featured": true
+    "featured": false
   },
   {
     "id": "project-2",
@@ -15,24 +55,6 @@
     "skills": ["MATLAB", "Simulink", "Signal Processing", "Biomedical Engineering"],
     "tags": ["MATLAB", "Simulink", "Signal Processing"],
     "link": "projects/project-2.html",
-    "featured": true
-  },
-  {
-    "id": "project-3",
-    "title": "Glucose\u2013Insulin PK/PD Model",
-    "description": "Pharmacokinetic/pharmacodynamic model of glucose\u2013insulin dynamics under meal perturbations. Fitted to clinical data and used to simulate type-2 diabetes progression.",
-    "skills": ["Python", "MATLAB", "NumPy", "SciPy", "LaTeX", "Computational Modeling", "Differential Equations", "Pharmacokinetics", "Data Analysis"],
-    "tags": ["Python", "MATLAB", "Pharmacokinetics", "Differential Equations"],
-    "link": "projects/project-3.html",
     "featured": false
-  },
-  {
-    "id": "project-4",
-    "title": "Tumor Growth ML Predictor",
-    "description": "Supervised learning models trained on synthetic tumor growth data to predict patient response to chemotherapy. Compares regression baselines against gradient boosting and neural surrogates.",
-    "skills": ["Python", "Pandas", "scikit-learn", "Matplotlib", "Machine Learning", "Systems Biology", "Data Analysis"],
-    "tags": ["Python", "scikit-learn", "Machine Learning", "Systems Biology"],
-    "link": "projects/project-4.html",
-    "featured": true
   }
 ]

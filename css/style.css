@@ -418,6 +418,31 @@ section + section {
   max-width: 600px;
 }
 
+/* --- Status Badges (project cards) --- */
+.status-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.6rem;
+}
+
+.status-inprogress {
+  background: #fff8e1;
+  color: #7a5800;
+  border: 1px solid #f0c040;
+}
+
+.status-class {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border: 1px solid var(--accent-light);
+}
+
 /* --- Skill Pills (Skills page) --- */
 .skill-pills {
   display: flex;

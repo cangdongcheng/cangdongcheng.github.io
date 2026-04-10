@@ -61,13 +61,16 @@
     fetch('data/projects.json')
       .then(function (r) { return r.json(); })
       .then(function (projects) {
-        const featured = projects.filter(function (p) { return p.featured; }).slice(0, 3);
+        const featured = projects.filter(function (p) { return p.featured; });
         document.getElementById('featured-grid').innerHTML = featured.map(function (p) {
           const tagsHTML = p.tags.map(function (t) {
             return '<span class="tag">' + t + '</span>';
           }).join('');
+          const badgeCls = p.status === 'In Progress' ? 'status-inprogress' : 'status-class';
+          const badgeHTML = p.status ? '<span class="status-badge ' + badgeCls + '">' + p.status + '</span>' : '';
           return [
             '<div class="card">',
+            '  ' + badgeHTML,
             '  <h3>' + p.title + '</h3>',
             '  <p>' + p.description + '</p>',
             '  <div class="card-tags">' + tagsHTML + '</div>',

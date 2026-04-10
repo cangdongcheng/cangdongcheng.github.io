@@ -5,10 +5,10 @@
   },
   {
     "category": "Libraries & Tools",
-    "skills": ["NumPy", "SciPy", "Pandas", "scikit-learn", "Matplotlib", "Simulink", "Git", "LaTeX"]
+    "skills": ["PyTorch", "NumPy", "SciPy", "Matplotlib", "openCARP", "Simulink", "Git", "LaTeX", "HDL"]
   },
   {
     "category": "Domain Knowledge",
-    "skills": ["Computational Modeling", "Differential Equations", "Signal Processing", "Machine Learning", "Systems Biology", "Pharmacokinetics", "Data Analysis", "Biomedical Engineering"]
+    "skills": ["Electrophysiology", "Computational Modeling", "FEM", "Neural Operators", "Machine Learning", "Medical Imaging", "Image Registration", "Differential Equations", "Signal Processing", "Digital Logic", "Computer Architecture", "Biomedical Engineering"]
   }
 ]
