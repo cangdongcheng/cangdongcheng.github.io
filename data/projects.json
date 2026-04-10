@@ -1,7 +1,7 @@
 [
   {
     "id": "project-ep-fem",
-    "title": "Cardiac EP Simulation with openCARP (FYP Track 1)",
+    "title": "Cardiac EP Simulation with openCARP (Final Year Project)",
     "description": "Finite-element simulation of cardiac electrophysiology at tissue and organ scale, generating ground-truth EP fields and synthetic 12-lead ECGs for surrogate model training.",
     "skills": ["Python", "openCARP", "FEM", "Electrophysiology", "Computational Modeling", "Differential Equations", "High Performance Computing"],
     "tags": ["openCARP", "FEM", "Electrophysiology", "HPC"],
@@ -16,7 +16,7 @@
   },
   {
     "id": "project-pino",
-    "title": "Physics-Informed Neural Surrogate for Cardiac Digital Twin (FYP Track 2)",
+    "title": "Physics-Informed Neural Surrogate for Cardiac Digital Twin (Final Year Project)",
     "description": "A DIMON-based neural surrogate with physics-informed learning for real-time cardiac digital twin deployment, replacing expensive FEM solves.",
     "skills": ["Python", "Deep Learning", "PINNs", "Electrophysiology", "Computational Modeling", "High Performance Computing"],
     "tags": ["PINNs", "Deep Learning", "DIMON", "Electrophysiology"],
