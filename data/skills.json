@@ -13,6 +13,6 @@
   },
   {
     "category": "Domain Knowledge",
-    "skills": ["Deep Learning", "Biomedical Imaging", "FEM", "PINNs", "Electrophysiology", "Computational Modeling", "High Performance Computing", "VoxelMorph", "Image Registration", "Image Segmentation", "Signal Processing", "Differential Equations", "Data Processing", "Data Analysis", "Digital Logic", "Computer Architecture"]
+    "skills": ["Deep Learning", "Biomedical Imaging", "FEM", "PINNs", "Electrophysiology", "Computational Modeling", "High Performance Computing", "U-Net", "VoxelMorph", "Image Registration", "Image Segmentation", "Signal Processing", "Differential Equations", "Data Processing", "Data Analysis", "Digital Logic", "Computer Architecture"]
   }
 ]

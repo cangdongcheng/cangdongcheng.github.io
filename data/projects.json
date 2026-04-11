@@ -37,13 +37,13 @@
     "id": "project-biomed-imaging",
     "title": "Biomedical Imaging with AI (BN3406)",
     "description": "End-to-end medical image analysis pipeline: preprocessing, segmentation, deformable registration (VoxelMorph), and cardiac echo analysis.",
-    "skills": ["Python", "Deep Learning", "Biomedical Imaging", "Image Registration", "Image Segmentation", "VoxelMorph", "ITK-SNAP", "Paraview"],
-    "tags": ["Python", "Deep Learning", "VoxelMorph", "Biomedical Imaging"],
+    "skills": ["Python", "Deep Learning", "Biomedical Imaging", "Image Registration", "Image Segmentation", "U-Net", "VoxelMorph", "ITK-SNAP", "Paraview"],
+    "tags": ["Python", "Deep Learning", "U-Net", "VoxelMorph"],
     "status": "Class Project",
     "featured": true,
     "details": {
       "overview": "Course project for BN3406 (Biomedical Imaging and AI Applications). Covers the full medical image analysis workflow from raw DICOM data to registered output volumes, with deep learning applied at each stage.",
-      "approach": "Preprocessing: spatial normalisation, noise filtering, bias field correction. Segmentation using both conventional methods and deep learning, with 3D shape reconstruction. Deformable image registration using VoxelMorph. Explored image synthesis, self-supervised learning, and explainable AI for medical imaging. Cardiac echocardiography video segmentation and shape reconstruction. Tools: Python, ITK-SNAP, Paraview.",
+      "approach": "Preprocessing: spatial normalisation, noise filtering, bias field correction. Segmentation using both conventional methods and deep learning (U-Net), with 3D shape reconstruction. Deformable image registration using VoxelMorph. Explored image synthesis, self-supervised learning, and explainable AI for medical imaging. Tools: Python, ITK-SNAP, Paraview.",
       "outcomes": "Completed. Pipeline developed and tested on publicly available medical imaging datasets. Mini-projects covering preprocessing, segmentation, and registration.",
       "links": []
     }
