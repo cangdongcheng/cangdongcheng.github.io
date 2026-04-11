@@ -5,6 +5,9 @@
 *.odt
 *.odp
 
+# Exception: the published CV
+!docs/resume.pdf
+
 # OS files
 .DS_Store
 Thumbs.db

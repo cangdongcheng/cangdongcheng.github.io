@@ -32,7 +32,7 @@ This file describes the structure, conventions, and design principles of this si
 ├── images/
 │   └── profile.jpg   # Profile photo (circular, 600×600)
 ├── docs/
-│   └── resume.pdf    # Resume/CV download (placeholder — linked from homepage hero)
+│   └── resume.pdf    # Resume/CV download — linked from homepage hero. LaTeX source lives at ~/Projects/Resume/Cang_Dongcheng_CV.tex (separate repo); rebuild with `tectonic` and copy the PDF here.
 ├── css/
 │   └── style.css     # Single global stylesheet
 ├── .gitignore        # Blocks *.pdf, *.doc, *.docx, *.odt

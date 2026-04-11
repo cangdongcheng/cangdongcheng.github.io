@@ -42,7 +42,6 @@ A living document for carrying context across Claude sessions. Read this first w
 
 | Item | Location | What's needed |
 |------|----------|---------------|
-| Resume PDF | `docs/resume.pdf` | User will upload later; button in homepage hero already links to it |
 | openCARP animation | `data/projects.json` → `project-ep-fem.details.media` | Placeholder in place (`type: "placeholder"`). Add a video/gif file, change `type` to `"video"` or `"image"`, add `src` |
 | LinkedIn URL | `contact.html` | Still `linkedin.com/in/your-profile` |
 | Google Scholar | `contact.html` | Placeholder link — remove if not applicable |
@@ -88,9 +87,17 @@ See `CLAUDE.md` for full detail, but in short:
 
 ---
 
+## Resume / CV
+
+The CV linked from the homepage (`docs/resume.pdf`) is built from a LaTeX source kept in a **separate** project at `~/Projects/Resume/Cang_Dongcheng_CV.tex`. Built with **Tectonic** (`tectonic Cang_Dongcheng_CV.tex` from that dir). When the source changes, copy `Cang_Dongcheng_CV.pdf` over `docs/resume.pdf` and commit.
+
+Format: 2-page single-column custom minimalist style, research-CV oriented (PhD-applicant flavour). Latin Modern Roman default fonts, no fontspec.
+
+---
+
 ## Source Materials (outside repo, gitignored)
 
-Located at `/home/cdc/Documents/Personal_page/personal_page material/`:
+Located at `/home/cdc/Projects/Personal_page/personal_page material/`:
 - `Cang Dongcheng - TLL internship report.pdf`
 - `Final Report Cang Dongcheng.pdf` (KLA — confidential)
 - `FYP Proposal Form.doc`
